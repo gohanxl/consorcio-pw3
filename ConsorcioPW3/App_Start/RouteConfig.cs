@@ -18,6 +18,12 @@ namespace ConsorcioPW3
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Bienvenidos",
+                url: "Bienvenido/{action}",
+                defaults: new { controller = "Bienvenido", action = "Bienvenido" }
+            );
         }
     }
 }
