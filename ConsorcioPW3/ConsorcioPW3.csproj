@@ -131,6 +131,7 @@
     <Content Include="Views\Shared\_AnonimoLayout.cshtml" />
     <Content Include="Views\Shared\_UsuarioLayout.cshtml" />
     <Content Include="Views\Shared\_pv_Footer.cshtml" />
+    <Content Include="Views\Shared\_pv_Header.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
