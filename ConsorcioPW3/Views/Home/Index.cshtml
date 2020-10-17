@@ -1,10 +1,8 @@
-﻿
-@{
-    ViewBag.Title = "Home";
-}
+﻿@model Entities.Usuario
 
 @{
     Layout = "~/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "Home";
 }
 
 <h1>Sistema para la Administracion de Consorcios</h1>
@@ -19,15 +17,18 @@
 </ul>
 <div class="tab-content" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-        <form>
+        <form novalidate>
+            @Html.AntiForgeryToken()
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputEmail-ingresar">Email</label>
-                    <input type="email" class="form-control" id="inputEmail-ingresar" placeholder="Email">
+                    @Html.EditorFor(Model => Model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
+                    @Html.ValidationMessageFor(Model => Model.Email, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputPassword-ingresar">Contraseña</label>
-                    <input type="password" class="form-control" id="inputPassword-ingresar" placeholder="Contraseña">
+                    @Html.EditorFor(Model => Model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Contraseña" } })
+                    @Html.ValidationMessageFor(Model => Model.Password, "", new { @class = "text-danger" })
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Sign in</button>
