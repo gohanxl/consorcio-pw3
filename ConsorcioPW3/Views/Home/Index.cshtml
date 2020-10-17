@@ -35,19 +35,22 @@
         </form>
     </div>
     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-        <form>
+        <form novalidate>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="inputEmail-registrar">Email</label>
-                    <input type="email" class="form-control" id="inputEmail-registrar" placeholder="Email">
+                    <label for="inputEmail-ingresar">Email</label>
+                    @Html.EditorFor(Model => Model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
+                    @Html.ValidationMessageFor(Model => Model.Email, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="inputPassword-registrar">Contraseña</label>
-                    <input type="password" class="form-control" id="inputPassword-registrar" placeholder="Contraseña">
+                    <label for="inputPassword-ingresar">Contraseña</label>
+                    @Html.PasswordFor(Model => Model.Password, new { @class = "form-control", @placeholder = "Contraseña" })
+                    @Html.ValidationMessageFor(Model => Model.Password, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputConfirmarPassword-registrar">Password</label>
-                    <input type="password" class="form-control" id="inputConfirmarPassword-registrar" placeholder="Confirmar Contraseña">
+                    @Html.PasswordFor(Model => Model.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirme Contraseña" })
+                    @Html.ValidationMessageFor(Model => Model.ConfirmPassword, "", new { @class = "text-danger" })
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Sign in</button>
