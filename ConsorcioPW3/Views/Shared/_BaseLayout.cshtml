@@ -8,7 +8,8 @@
     <link href="~/Styles/bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div class="d-flex flex-column h-100">
+    <img class="position-absolute background-picture" src="~/Assets/Pictures/fondo-edificio.png" alt="Alternate Text" />
+    <div class="d-flex flex-column h-100 justify-content-center">
         @{Html.RenderPartial("_pv_Header");}
         <div class="container body-content flex-grow-1">
             @RenderBody()
