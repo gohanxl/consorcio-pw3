@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using Repositories;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace ConsorcioPW3.Controllers
 {
     public class HomeController : Controller
     {
+        UsuarioService<Usuario> usuarioService = new UsuarioService<Usuario>();
         // GET: Home
         public ActionResult Index()
         {
@@ -20,6 +22,9 @@ namespace ConsorcioPW3.Controllers
             Usuario usuario = new Usuario();
             usuario.Email = formCollection["Email"];
             usuario.Password = formCollection["Password"];
+            usuario.FechaRegistracion = DateTime.Now;
+
+            usuarioService.Insert(usuario);
 
             return View("Index");
         }
