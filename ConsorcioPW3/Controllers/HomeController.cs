@@ -36,6 +36,7 @@ namespace ConsorcioPW3.Controllers
                 return View("Register");
             }
 
+            usuario.Email = userEmail;
             usuario.Password = formCollection["Password"];
             usuario.FechaRegistracion = DateTime.Now;
 
