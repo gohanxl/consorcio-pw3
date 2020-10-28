@@ -5,7 +5,6 @@
     ViewBag.Title = "Home";
 }
 
-
 <div class="home">
     <h1 class="siblings-margin-30 text-center">Sistema para la Administracion de Consorcios</h1>
 
@@ -14,51 +13,28 @@
             <li class="nav-item">
                 <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Ingresar</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Registrarse</a>
-            </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                <form novalidate>
+                <form action="/Home/Login" method="post" novalidate>
                     @Html.AntiForgeryToken()
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label for="inputEmail-ingresar">Email</label>
                             @Html.EditorFor(Model => Model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
                             @Html.ValidationMessageFor(Model => Model.Email, "", new { @class = "text-danger" })
+                            <p class="text-danger m-0">@ViewBag.LoginError</p>
                         </div>
                         <div class="form-group col-md-12">
                             <label for="inputPassword-ingresar">Contraseña</label>
-                            @Html.EditorFor(Model => Model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Contraseña" } })
-                            @Html.ValidationMessageFor(Model => Model.Password, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <button type="submit" class="btn button-primary">Sign in</button>
-                </form>
-            </div>
-            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                <form action="/Home/CrearUsuario" method="post" novalidate>
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label for="inputEmail-ingresar">Email</label>
-                            @Html.EditorFor(Model => Model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
-                            @Html.ValidationMessageFor(Model => Model.Email, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group col-md-12">
-                            <label for="inputPassword-ingresar">Contraseña</label>
-                            @Html.PasswordFor(Model => Model.Password, new { @class = "form-control", @placeholder = "Contraseña" })
-                            @Html.ValidationMessageFor(Model => Model.Password, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group col-md-12">
-                            <label for="inputConfirmarPassword-registrar">Password</label>
-                            @Html.PasswordFor(Model => Model.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirme Contraseña" })
-                            @Html.ValidationMessageFor(Model => Model.ConfirmPassword, "", new { @class = "text-danger" })
+                            @Html.PasswordFor(Model => Model.Password, new { @class = "form-control", @placeholder = "Contraseña" } )
+                            
                         </div>
                     </div>
                     <button type="submit" class="btn button-primary">Sign in</button>
                 </form>
             </div>
         </div>
+        <p class="mt-3">Todavia no te hiciste una cuenta? <a class="navigation-color" href="/Home/Register">Registrate!</a></p>
     </section>
 </div>
