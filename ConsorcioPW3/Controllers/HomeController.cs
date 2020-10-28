@@ -39,6 +39,7 @@ namespace ConsorcioPW3.Controllers
 
             usuario.Email = userEmail;
             usuario.Password = Crypto.HashPassword(formCollection["Password"]);
+
             usuario.FechaRegistracion = DateTime.Now;
 
             usuarioService.Insert(usuario);
