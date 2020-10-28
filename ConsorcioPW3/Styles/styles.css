@@ -47,12 +47,22 @@ body, html {
    margin-bottom: 30px;
 }
 
-.home {
-    margin: 15% auto;
+.body-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* header */
+.main-logo {
+    width: 40px !important;
+}
+
+.main-logo:hover {
+    opacity: .5;
 }
 
 /* footer */
-
 #footer p {
     margin: 0;
 }
