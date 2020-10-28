@@ -32,18 +32,16 @@ namespace ConsorcioPW3.Controllers
 
             if (usuarioService.GetByEmail(userEmail))
             {
-                ModelState.AddModelError("Email", "El mail ya se encuentra uso, pruebe utilizando otro");
+                ModelState.AddModelError("Email", "El email ya se encuentra uso, pruebe utilizando otro");
                 return View("Register");
             }
-            else
-            {
-                usuario.Password = formCollection["Password"];
-                usuario.FechaRegistracion = DateTime.Now;
 
-                usuarioService.Insert(usuario);
+            usuario.Password = formCollection["Password"];
+            usuario.FechaRegistracion = DateTime.Now;
 
-                return View("Index");
-            }
+            usuarioService.Insert(usuario);
+
+            return View("Index");
 
         }
 
@@ -57,13 +55,11 @@ namespace ConsorcioPW3.Controllers
 
             if (!isUserValid)
             {
-                ModelState.AddModelError("Email", "El usuario no es valido, intente de nuevo");
+                ModelState.AddModelError("Error", "Usuario o contraseña invalidos");
                 return View("Index");
             }
-            else
-            {
-                return Redirect("/Bienvenido");
-            }
+
+            return Redirect("/Bienvenido");
 
         }
 
