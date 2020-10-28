@@ -33,9 +33,13 @@ body, html {
     background-color: var(--secondary-color);
 }
 
+.navigation-button {
+    background-color: var(--navigation-color) !important;
+    color: white !important;
+}
 
 .button-primary {
-    background-color: var(--primary-color) !important;
+    background-color: var(--button-primary) !important;
     color: white !important;
 }
 
