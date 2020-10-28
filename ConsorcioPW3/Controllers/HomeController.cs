@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Helpers;
 
 namespace ConsorcioPW3.Controllers
 {
@@ -36,7 +37,8 @@ namespace ConsorcioPW3.Controllers
                 return View("Register");
             }
 
-            usuario.Password = formCollection["Password"];
+            usuario.Email = userEmail;
+            usuario.Password = Crypto.HashPassword(formCollection["Password"]);
             usuario.FechaRegistracion = DateTime.Now;
 
             usuarioService.Insert(usuario);
@@ -49,8 +51,8 @@ namespace ConsorcioPW3.Controllers
         public ActionResult Login(FormCollection formCollection)
         {
             string userEmail = formCollection["Email"];
-            string userPassword = formCollection["Password"];
-
+            string userPassword = Crypto.HashPassword(formCollection["Password"]);
+            
             bool isUserValid = usuarioService.IsUserValid(userEmail, userPassword);
 
             if (!isUserValid)
