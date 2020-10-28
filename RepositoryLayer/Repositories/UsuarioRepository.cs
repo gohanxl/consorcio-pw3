@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Repositories.Repositories
 {
-   public class UsuarioRepository<T> : IEnumerable<T>, IRepository<T> where T : class
+    public class UsuarioRepository<T> : IEnumerable<T>, IRepository<T> where T : class
     {
         ConsortiumContext context = null;
         private DbSet<T> defaultObject = null;
@@ -28,7 +28,7 @@ namespace Repositories.Repositories
 
         public T GetById(object id)
         {
-           return defaultObject.Find(id);
+            return defaultObject.Find(id);
         }
 
         public IEnumerator<T> GetEnumerator()
@@ -60,6 +60,20 @@ namespace Repositories.Repositories
         IEnumerator IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
+        }
+
+        public bool GetByEmail(string email)
+        {
+            var hasUserWithEmail = context.Usuario.Any(user => user.Email == email);
+
+            return hasUserWithEmail;
+        }
+
+        public bool IsUserValid(string email, string password)
+        {
+            var isUserValid = context.Usuario.Any(user => user.Email == email && user.Password == password);
+
+            return isUserValid;
         }
     }
 }

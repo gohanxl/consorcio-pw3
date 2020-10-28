@@ -45,5 +45,15 @@ namespace Services
         {
             return userRepository.GetAll();
         }
+
+        public bool GetByEmail(string email)
+        {
+            return userRepository.GetByEmail(email);
+        }
+
+        public bool IsUserValid(string email, string password)
+        {
+            return userRepository.IsUserValid(email, password);
+        }
     }
 }
