@@ -1,0 +1,58 @@
+﻿:root {
+    --button-primary: #c77a8c;
+    --primary-color: #6a3a4f;
+    --navigation-color: #9885b2;
+    --secondary-color: #90546e;
+    --dark-primary: #211319;
+}
+
+body, html {
+    height: 100%;
+}
+
+.background-picture {
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+    z-index: -1;
+}
+
+.dark-primary {
+    background-color: #211319
+}
+
+.navigation-color {
+    color: var(--navigation-color) !important;
+}
+
+.primary-color {
+    background-color: var(--primary-color)
+}
+
+.secondary-color {
+    background-color: var(--secondary-color);
+}
+
+
+.button-primary {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
+
+.flex-basis-10 {
+    flex-basis: 10%
+}
+
+.siblings-margin-30 {
+   margin-bottom: 30px;
+}
+
+.home {
+    margin: 15% auto;
+}
+
+/* footer */
+
+#footer p {
+    margin: 0;
+}
