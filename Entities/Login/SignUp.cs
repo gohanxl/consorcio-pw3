@@ -15,7 +15,7 @@ namespace Entities.Login
         public string Password { get; set; }
 
         [NotMapped]
-        [Compare("Password", ErrorMessage = "Las contraseñas no son identicas, intente de nuevo.")]
+        [Compare("Password", ErrorMessage = "Las contraseñas no son identicas")]
         public string ConfirmPassword { get; set; }
     }
 }

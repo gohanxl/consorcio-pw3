@@ -57,6 +57,11 @@ body, html {
     justify-content: center;
 }
 
+.error-home {
+    margin-bottom: 1rem;
+    color: #dc3545;
+}
+
 /* header */
 .main-logo {
     width: 40px !important;

@@ -27,7 +27,7 @@
                         </div>
                         @if (!ViewData.ModelState.IsValid)
                         {   
-                            @Html.ValidationMessage("Error", new { @class = "m-2 text-danger"})
+                            @Html.ValidationMessage("Error", new { @class = "error-home col-md-12" })
                         }
                     </div>
                     <button type="submit" class="btn button-primary">Sign in</button>
