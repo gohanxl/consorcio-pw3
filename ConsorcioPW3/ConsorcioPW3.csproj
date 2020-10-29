@@ -170,7 +170,7 @@
       <Project>{e26a9ab2-ac43-4f94-821b-aceff1990f06}</Project>
       <Name>Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RepositoryLayer\Repositories.csproj">
+    <ProjectReference Include="..\Repositories\Repositories.csproj">
       <Project>{e4cc8ff3-785c-4f79-b0b9-b00adc017af7}</Project>
       <Name>Repositories</Name>
     </ProjectReference>
