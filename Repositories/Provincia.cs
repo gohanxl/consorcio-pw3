@@ -7,23 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RepositoryLayer
+namespace Repositories
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class TipoGasto
+    public partial class Provincia
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TipoGasto()
+        public Provincia()
         {
-            this.Gasto = new HashSet<Gasto>();
+            this.Consorcio = new HashSet<Consorcio>();
         }
     
-        public int IdTipoGasto { get; set; }
+        public int IdProvincia { get; set; }
         public string Nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Gasto> Gasto { get; set; }
+        public virtual ICollection<Consorcio> Consorcio { get; set; }
     }
 }

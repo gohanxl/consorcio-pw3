@@ -7,22 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RepositoryLayer
+namespace Repositories
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Unidad
+    public partial class Gasto
     {
-        public int IdUnidad { get; set; }
+        public int IdGasto { get; set; }
         public string Nombre { get; set; }
-        public string NombrePropietario { get; set; }
-        public string ApellidoPropietario { get; set; }
-        public string EmailPropietario { get; set; }
-        public Nullable<int> Superficie { get; set; }
+        public string Descripcion { get; set; }
+        public int IdConsorcio { get; set; }
+        public int IdTipoGasto { get; set; }
+        public System.DateTime FechaGasto { get; set; }
+        public int AnioExpensa { get; set; }
+        public int MesExpensa { get; set; }
+        public string ArchivoComprobante { get; set; }
+        public decimal Monto { get; set; }
         public System.DateTime FechaCreacion { get; set; }
+        public int IdUsuarioCreador { get; set; }
     
         public virtual Consorcio Consorcio { get; set; }
+        public virtual TipoGasto TipoGasto { get; set; }
         public virtual Usuario Usuario { get; set; }
     }
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3da7831620584c74a3c8c35018a7ec3e" Name="Diagram1">
+        <EntityTypeShape EntityType="Repositories.Consorcio" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Repositories.Gasto" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Repositories.Provincia" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Repositories.sysdiagrams" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Repositories.TipoGasto" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Repositories.Unidad" Width="1.5" PointX="8.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Repositories.Usuario" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="Repositories.FK_Consorcio_Consorcio" ManuallyRouted="false" />
+        <AssociationConnector Association="Repositories.FK_Consorcio_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="Repositories.FK_Gasto_Consorcio" ManuallyRouted="false" />
+        <AssociationConnector Association="Repositories.FK_Unidad_Consorcio" ManuallyRouted="false" />
+        <AssociationConnector Association="Repositories.FK_Gasto_TipoGasto" ManuallyRouted="false" />
+        <AssociationConnector Association="Repositories.FK_Gasto_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="Repositories.FK_Unidad_Usuario" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

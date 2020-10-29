@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RepositoryLayer
+namespace Repositories
 {
     using System;
     using System.Data.Entity;
@@ -28,6 +28,7 @@ namespace RepositoryLayer
         public virtual DbSet<Consorcio> Consorcio { get; set; }
         public virtual DbSet<Gasto> Gasto { get; set; }
         public virtual DbSet<Provincia> Provincia { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TipoGasto> TipoGasto { get; set; }
         public virtual DbSet<Unidad> Unidad { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }

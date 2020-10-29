@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\isaia\Source\Repos\gohanxl\consorcio-pw3\RepositoryLayer\Model1.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\isaia\source\repos\gohanxl\consorcio-pw3\Repositories\Model1.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
