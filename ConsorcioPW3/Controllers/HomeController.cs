@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.Mvc;
+using RepositoryLayer;
 
 namespace ConsorcioPW3.Controllers
 {
@@ -37,7 +38,9 @@ namespace ConsorcioPW3.Controllers
             }
 
             usuario.Email = userEmail;
+
             usuario.Password = formCollection["Password"];
+
             usuario.FechaRegistracion = DateTime.Now;
 
             usuarioService.Insert(usuario);
@@ -51,7 +54,7 @@ namespace ConsorcioPW3.Controllers
         {
             string userEmail = formCollection["Email"];
             string userPassword = formCollection["Password"];
-
+            
             bool isUserValid = usuarioService.IsUserValid(userEmail, userPassword);
 
             if (!isUserValid)
