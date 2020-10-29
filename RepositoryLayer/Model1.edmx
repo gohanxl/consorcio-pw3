@@ -268,7 +268,7 @@
           </Key>
           <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Email" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FechaRegistracion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FechaUltLogin" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Consorcio" Relationship="Self.FK_Consorcio_Usuario" FromRole="Usuario" ToRole="Consorcio" />

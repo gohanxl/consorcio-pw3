@@ -1,11 +1,14 @@
 ﻿using Repositories.Interfaces;
+using RepositoryLayer;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Helpers;
 
 namespace Repositories.Repositories
 {
@@ -38,13 +41,36 @@ namespace Repositories.Repositories
 
         public void Insert(T obj)
         {
+            if(obj is Usuario user)
+            {
+                user.Password = HashPassword(user.Password);
+            }
             defaultObject.Add(obj);
             Save();
         }
 
         public void Save()
-        {
-            context.SaveChanges();
+        {   
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                // Retrieve the error messages as a list of strings.
+                var errorMessages = ex.EntityValidationErrors
+                        .SelectMany(x => x.ValidationErrors)
+                        .Select(x => x.ErrorMessage);
+
+                // Join the list to a single string.
+                var fullErrorMessage = string.Join("; ", errorMessages);
+
+                // Combine the original exception message with the new one.
+                var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
+
+                // Throw a new DbEntityValidationException with the improved exception message.
+                throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
+            }
         }
 
         public void Update(T obj)
@@ -71,9 +97,23 @@ namespace Repositories.Repositories
 
         public bool IsUserValid(string email, string password)
         {
-            var isUserValid = context.Usuario.Any(user => user.Email == email && user.Password == password);
 
-            return isUserValid;
+            Usuario userFound = context.Usuario.Single(user => user.Email == email);
+            if (userFound == null)
+            {
+                return false;
+            }
+            return VerifyPassword(password, userFound.Password);
+        }
+
+        private string HashPassword(string password)
+        {
+            return Crypto.HashPassword(password);
+        }
+
+        private bool VerifyPassword(string password, string hashedPassword)
+        {
+            return Crypto.VerifyHashedPassword(hashedPassword, password);
         }
     }
 }

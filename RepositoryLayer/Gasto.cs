@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Repositories
+namespace RepositoryLayer
 {
     using System;
     using System.Collections.Generic;
