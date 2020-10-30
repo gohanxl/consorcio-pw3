@@ -1,7 +1,22 @@
 ﻿
 @{
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
     ViewBag.Title = "AnonimoLayout";
 }
 
-<h2>AnonimoLayout</h2>
+@section Header {
+
+    <nav class="navbar navbar-inverse navbar-fixed-top primary-color">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="@Url.Action("Index", "Home")" id="loginLink" class="navbar-brand">
+                    <img class="main-logo" src="~/Assets/Pictures/logo.png" alt="logo-inicio" />
+                </a>
+            </div>
+        </div>
+    </nav>
+
+}
+
+@RenderBody()
 
