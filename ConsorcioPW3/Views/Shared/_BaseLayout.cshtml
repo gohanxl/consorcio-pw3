@@ -10,11 +10,10 @@
 <body>
     <img class="position-absolute background-picture" src="~/Assets/Pictures/fondo-edificio.png" alt="Alternate Text" />
     <div class="d-flex flex-column h-100 justify-content-center">
-        @{Html.RenderPartial("_pv_Header");}
+        @RenderSection("Header", true);
         <div class="container body-content flex-grow-1">
             @RenderBody()
         </div>
-
         @{Html.RenderPartial("_pv_Footer");}
     </div>
     <script src="~/Scripts/jquery-3.5.1.min.js"></script>

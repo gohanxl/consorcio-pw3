@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = "~/Views/Shared/_BaseLayout.cshtml";
     ViewBag.Title = "AnonimoLayout";
 }
@@ -9,8 +8,11 @@
     <nav class="navbar navbar-inverse navbar-fixed-top primary-color">
         <div class="container">
             <div class="navbar-header">
-                <a href="@Url.Action("Index", "Home")" id="loginLink" class="navbar-brand">
+                <a href="@Url.Action("Index", "Bienvenido")" id="loginLink" class="navbar-brand">
                     <img class="main-logo" src="~/Assets/Pictures/logo.png" alt="logo-inicio" />
+                </a>
+                <a href="@Url.Action("Index", "MyConsortiums")" id="my-consortiums" class="text-decoration-none nav-item">
+                    <span class="text-white">Mis Consorcios</span>
                 </a>
             </div>
         </div>
