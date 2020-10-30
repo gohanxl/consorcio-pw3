@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Repositories;
 using Repositories.Repositories;
 using System;
 using System.Collections.Generic;
@@ -51,7 +52,7 @@ namespace Services
             return userRepository.GetByEmail(email);
         }
 
-        public bool IsUserValid(string email, string password)
+        public Usuario IsUserValid(string email, string password)
         {
             return userRepository.IsUserValid(email, password);
         }

@@ -94,15 +94,18 @@ namespace Repositories.Repositories
             return hasUserWithEmail;
         }
 
-        public bool IsUserValid(string email, string password)
+        public Usuario IsUserValid(string email, string password)
         {
-
             Usuario userFound = context.Usuario.Single(user => user.Email == email);
             if (userFound == null)
             {
-                return false;
+                return null;
             }
-            return VerifyPassword(password, userFound.Password);
+            if (!VerifyPassword(password, userFound.Password))
+            {
+                return null;
+            }
+            return userFound;
         }
 
         private string HashPassword(string password)

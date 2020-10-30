@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace ConsorcioPW3.Controllers
 {
@@ -54,16 +56,33 @@ namespace ConsorcioPW3.Controllers
             string userEmail = formCollection["Email"];
             string userPassword = formCollection["Password"];
             
-            bool isUserValid = usuarioService.IsUserValid(userEmail, userPassword);
+            Usuario userFound = usuarioService.IsUserValid(userEmail, userPassword);
 
-            if (!isUserValid)
+            if (userFound == null)
             {
                 ModelState.AddModelError("Error", "Usuario o contraseña invalidos");
                 return View("Index");
             }
 
+            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, userFound.Email, DateTime.Now, DateTime.Now.AddMinutes(10), true, userFound.IdUsuario.ToString());
+            String encrypt = FormsAuthentication.Encrypt(ticket);
+            HttpCookie cookie = new HttpCookie("SESSION", encrypt);
+
+            Response.Cookies.Add(cookie);
+
             return Redirect("/Bienvenido");
 
+        }
+
+        public ActionResult Logout()
+        {
+            HttpContext.User = new GenericPrincipal(new GenericIdentity(""), null);
+            FormsAuthentication.SignOut();
+            HttpCookie cookie = Request.Cookies["SESSION"];
+            cookie.Expires = DateTime.Now.AddDays(-1D);
+            Response.Cookies.Add(cookie);
+
+            return View("Index");
         }
 
     }
