@@ -14,6 +14,12 @@
                 <a href="@Url.Action("Index", "MyConsortiums")" id="my-consortiums" class="text-decoration-none nav-item">
                     <span class="text-white">Mis Consorcios</span>
                 </a>
+                @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    <span class="text-white">Bienvenido @HttpContext.Current.User.Identity.Name</span>
+                    @Html.ActionLink("Cerrar sesion", "Logout", "Home", null, new { @class = "btn btn-danger text-white px-5 mx-3" })
+                }
+
             </div>
         </div>
     </nav>
