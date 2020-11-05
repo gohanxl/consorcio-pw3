@@ -5,61 +5,61 @@
     ViewBag.Title = "Home";
 }
 
-<div class="container">
-    <div class="table-responsive">
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-8"><h2>Gastos</b></h2></div>
-                    <div class="col-sm-4">
-                        <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i>Agregar nuevo</button>
-                    </div>
-                </div>
-            </div>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Consorcio</th>
-                        <th>Tipo Gasto</th>
-                        <th>Fecha Gasto</th>
-                        <th>Año Expensa</th>
-                        <th>Mes Expensa</th>
-                        <th>Archivo Comprobante</th>
-                        <th>Monto</th>
-                        <th>Fecha Creación</th>
-                        <th>Usuario</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var gasto in Model)
-                    {
-                        <tr>
-                            <td>@gasto.IdGasto</td>
-                            <td>@gasto.Nombre</td>
-                            <td>@gasto.Descripcion</td>
-                            <td>@gasto.Consorcio.Nombre</td>
-                            <td>@gasto.TipoGasto.Nombre</td>
-                            <td>@gasto.FechaGasto</td>
-                            <td>@gasto.AnioExpensa</td>
-                            <td>@gasto.MesExpensa</td>
-                            <td>@gasto.ArchivoComprobante</td>
-                            <td>@gasto.Monto</td>
-                            <td>@gasto.FechaCreacion</td>
-                            <td>@gasto.Usuario.Email</td>
-                            <td>
-                                <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                                <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                            </td>
-                        </tr>
-                    }
-
-                </tbody>
-            </table>
-        </div>
-    </div>
+<div class="container mt-5">
+    <table id="table" class="table table-striped table-bordered table-responsive" style="width:100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Consorcio</th>
+                <th>Tipo Gasto</th>
+                <th>Fecha Gasto</th>
+                <th>Año Expensa</th>
+                <th>Mes Expensa</th>
+                <th>Archivo Comprobante</th>
+                <th>Monto</th>
+                <th>Fecha Creación</th>
+                <th>Usuario</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var gasto in Model)
+            {
+                <tr>
+                    <td>@gasto.IdGasto</td>
+                    <td>@gasto.Nombre</td>
+                    <td>@gasto.Descripcion</td>
+                    <td>@gasto.Consorcio.Nombre</td>
+                    <td>@gasto.TipoGasto.Nombre</td>
+                    <td>@gasto.FechaGasto</td>
+                    <td>@gasto.AnioExpensa</td>
+                    <td>@gasto.MesExpensa</td>
+                    <td>@gasto.ArchivoComprobante</td>
+                    <td>@gasto.Monto</td>
+                    <td>@gasto.FechaCreacion</td>
+                    <td>@gasto.Usuario.Email</td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Consorcio</th>
+                <th>Tipo Gasto</th>
+                <th>Fecha Gasto</th>
+                <th>Año Expensa</th>
+                <th>Mes Expensa</th>
+                <th>Archivo Comprobante</th>
+                <th>Monto</th>
+                <th>Fecha Creación</th>
+                <th>Usuario</th>
+                <th>Acciones</th>
+            </tr>
+        </tfoot>
+    </table>
 </div>
