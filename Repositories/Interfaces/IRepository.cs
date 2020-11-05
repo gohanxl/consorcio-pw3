@@ -1,8 +1,10 @@
-﻿namespace Repositories.Interfaces
+﻿using System.Collections.Generic;
+
+namespace Repositories.Interfaces
 {
     public interface IRepository<T> where T : class
     {
-        //IEnumerable<T> GetAll();
+        IEnumerable<T> GetAll();
         T GetById(object id);
         void Insert(T obj);
         void Update(T obj);
