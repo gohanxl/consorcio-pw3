@@ -35,7 +35,14 @@
                     <td>@gasto.Monto</td>
                     <td>@gasto.ArchivoComprobante</td>
                     <td>
-                        @Html.ActionLink("Edite", "Edit", "Gastos", new { id = gasto.IdGasto }, null)
+                        @*@Html.ActionLink("Edit", null, null, new { id = gasto.IdGasto, data_toggle = "modal", data_target = "#editGastoModal", }, null)*@
+                        <button type="button" class="btn btn-primary m-3" data-toggle="modal" data-target="#editGastoModal">
+                            Editar Gasto 
+                        </button>
+                        @* Agregar un modal nuevo con el nombre de editGastoModal, action link no sirve acá. Podemos investigar para solo usar 1 solo form
+                            pero creo que no hay. Si la hay, vamos a tener que usar ajax
+                            Si creamos una nueva view, deberiamos crear una carpeta de Gastos adentro de Shared?
+                            *@
                         @Html.ActionLink("Delete", "Delete", "Gastos", new { id = gasto.IdGasto }, null)
                     </td>
                 </tr>
