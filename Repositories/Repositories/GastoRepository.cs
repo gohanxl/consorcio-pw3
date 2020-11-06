@@ -23,6 +23,7 @@ namespace Repositories.Repositories
         {
             T existing = defaultObject.Find(id);
             defaultObject.Remove(existing);
+            Save();
         }
 
         public T GetById(object id)

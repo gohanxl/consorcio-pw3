@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Gasto\Gasto.cs" />
     <Compile Include="Gasto\GastoEntity.cs" />
     <Compile Include="Login\SignIn.cs" />
     <Compile Include="Login\SignUp.cs" />

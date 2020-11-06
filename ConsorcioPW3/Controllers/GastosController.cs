@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace ConsorcioPW3.Controllers
 {
-    public class GastoController : Controller
+    public class GastosController : Controller
     {
         GastoService<Gasto> gastoService = new GastoService<Gasto>();
         // GET: Gastos
@@ -16,6 +16,12 @@ namespace ConsorcioPW3.Controllers
         {
             IEnumerable<Gasto> gastos = gastoService.GetAll();
             return View(gastos);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            gastoService.Delete(id);
+            return Redirect("/Gastos/Index");
         }
     }
 }
