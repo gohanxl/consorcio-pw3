@@ -23,5 +23,18 @@ namespace ConsorcioPW3.Controllers
             gastoService.Delete(id);
             return Redirect("/Gastos/Index");
         }
+
+        public ActionResult Modify(FormCollection formCollection)
+        {
+
+            Gasto gasto = new Gasto();
+
+            gasto.AnioExpensa =  Int32.Parse(formCollection["AnioExpensa"]);
+            //Resto de data desde el form collection
+
+            gastoService.Update(gasto);
+
+            return View("/Gastos/Index");
+        }
     }
 }
