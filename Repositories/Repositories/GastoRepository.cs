@@ -5,16 +5,15 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
-using System.Web.Helpers;
 
 namespace Repositories.Repositories
 {
-    public class UsuarioRepository<T> : IEnumerable<T>, IRepository<T> where T : class
+    public class GastoRepository<T> : IEnumerable<T>, IRepository<T> where T : class
     {
         ConsortiumContext context = null;
         private DbSet<T> defaultObject = null;
 
-        public UsuarioRepository()
+        public GastoRepository()
         {
             this.context = new ConsortiumContext();
             defaultObject = context.Set<T>();
@@ -24,6 +23,7 @@ namespace Repositories.Repositories
         {
             T existing = defaultObject.Find(id);
             defaultObject.Remove(existing);
+            Save();
         }
 
         public T GetById(object id)
@@ -38,16 +38,17 @@ namespace Repositories.Repositories
 
         public void Insert(T obj)
         {
-            if(obj is Usuario user)
-            {
-                user.Password = HashPassword(user.Password);
-            }
             defaultObject.Add(obj);
             Save();
         }
 
+        public IEnumerable<T> GetAll()
+        {
+            return defaultObject.ToList();
+        }
+
         public void Save()
-        {   
+        {
             try
             {
                 context.SaveChanges();
@@ -75,50 +76,10 @@ namespace Repositories.Repositories
             defaultObject.Attach(obj);
             context.Entry(obj).State = EntityState.Modified;
         }
-        public IEnumerable<T> GetAll()
-        {
-            return defaultObject.ToList();
-        }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
-        }
-
-        public bool EmailExist(string email)
-        {
-            var hasUserWithEmail = context.Usuario.Any(user => user.Email == email);
-
-            return hasUserWithEmail;
-        }
-
-        public Usuario GetByEmail(string email)
-        {
-            return context.Usuario.FirstOrDefault(user => user.Email == email);
-        }
-
-        public Usuario IsUserValid(string email, string password)
-        {
-            Usuario userFound = context.Usuario.Single(user => user.Email == email);
-            if (userFound == null)
-            {
-                return null;
-            }
-            if (!VerifyPassword(password, userFound.Password))
-            {
-                return null;
-            }
-            return userFound;
-        }
-
-        private string HashPassword(string password)
-        {
-            return Crypto.HashPassword(password);
-        }
-
-        private bool VerifyPassword(string password, string hashedPassword)
-        {
-            return Crypto.VerifyHashedPassword(hashedPassword, password);
         }
     }
 }

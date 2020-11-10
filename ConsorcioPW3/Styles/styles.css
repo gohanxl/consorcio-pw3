@@ -43,10 +43,6 @@ body, html {
     color: white !important;
 }
 
-.flex-basis-10 {
-    flex-basis: 10%
-}
-
 .siblings-margin-30 {
    margin-bottom: 30px;
 }
@@ -72,6 +68,16 @@ body, html {
 }
 
 /* footer */
+#footer {
+    height: 100px;
+}
+
 #footer p {
     margin: 0;
+}
+
+/* table */
+
+#table_wrapper {
+    padding: 15px;
 }

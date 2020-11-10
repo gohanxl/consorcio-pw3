@@ -3,9 +3,6 @@ using Repositories;
 using Repositories.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services
 {
@@ -47,7 +44,12 @@ namespace Services
             return userRepository.GetAll();
         }
 
-        public bool GetByEmail(string email)
+        public bool EmailExist(string email)
+        {
+            return userRepository.EmailExist(email);
+        }
+
+        public Usuario GetByEmail(string email)
         {
             return userRepository.GetByEmail(email);
         }

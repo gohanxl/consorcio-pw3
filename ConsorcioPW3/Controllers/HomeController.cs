@@ -1,13 +1,11 @@
 ﻿using Repositories;
 using Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Web.WebPages;
 
 namespace ConsorcioPW3.Controllers
 {
@@ -32,7 +30,7 @@ namespace ConsorcioPW3.Controllers
             Usuario usuario = new Usuario();
             var userEmail = formCollection["Email"];
 
-            if (usuarioService.GetByEmail(userEmail))
+            if (usuarioService.EmailExist(userEmail))
             {
                 ModelState.AddModelError("Email", "El email ya se encuentra uso, pruebe utilizando otro");
                 return View("Register");
@@ -51,7 +49,7 @@ namespace ConsorcioPW3.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(FormCollection formCollection)
+        public ActionResult Login(FormCollection formCollection, string ReturnUrl)
         {
             string userEmail = formCollection["Email"];
             string userPassword = formCollection["Password"];
@@ -70,6 +68,10 @@ namespace ConsorcioPW3.Controllers
 
             Response.Cookies.Add(cookie);
 
+            if(!ReturnUrl.IsEmpty())
+            {
+                return Redirect(ReturnUrl);
+            }
             return Redirect("/Bienvenido");
 
         }
