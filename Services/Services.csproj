@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Consorcio\ConsorcioService.cs" />
+    <Compile Include="Gasto\TipoGastoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Gasto\GastoService.cs" />
     <Compile Include="Usuario\UsuarioService.cs" />

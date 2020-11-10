@@ -1,19 +1,20 @@
 ﻿using Repositories.Interfaces;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Repositories.Repositories
 {
-    public class TipoGastoRepository<T> : IEnumerable<T>, IRepository<T> where T : class
+    public class ConsorcioRepository<T> : IEnumerable<T>, IRepository<T> where T : class
     {
         ConsortiumContext context = null;
         private DbSet<T> defaultObject = null;
 
-        public TipoGastoRepository()
+        public ConsorcioRepository()
         {
             this.context = new ConsortiumContext();
             defaultObject = context.Set<T>();
@@ -23,11 +24,7 @@ namespace Repositories.Repositories
         {
             T existing = defaultObject.Find(id);
             defaultObject.Remove(existing);
-        }
-
-        public IEnumerable<T> GetAll()
-        {
-            return defaultObject.ToList();
+            Save();
         }
 
         public T GetById(object id)
@@ -44,6 +41,11 @@ namespace Repositories.Repositories
         {
             defaultObject.Add(obj);
             Save();
+        }
+
+        public IEnumerable<T> GetAll()
+        {
+            return defaultObject.ToList();
         }
 
         public void Save()
@@ -76,10 +78,9 @@ namespace Repositories.Repositories
             context.Entry(obj).State = EntityState.Modified;
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
         }
-
     }
 }

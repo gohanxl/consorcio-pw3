@@ -85,11 +85,16 @@ namespace Repositories.Repositories
             throw new NotImplementedException();
         }
 
-        public bool GetByEmail(string email)
+        public bool EmailExist(string email)
         {
             var hasUserWithEmail = context.Usuario.Any(user => user.Email == email);
 
             return hasUserWithEmail;
+        }
+
+        public Usuario GetByEmail(string email)
+        {
+            return context.Usuario.FirstOrDefault(user => user.Email == email);
         }
 
         public Usuario IsUserValid(string email, string password)

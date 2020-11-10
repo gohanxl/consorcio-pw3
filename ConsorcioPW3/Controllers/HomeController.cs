@@ -29,7 +29,7 @@ namespace ConsorcioPW3.Controllers
             Usuario usuario = new Usuario();
             var userEmail = formCollection["Email"];
 
-            if (usuarioService.GetByEmail(userEmail))
+            if (usuarioService.EmailExist(userEmail))
             {
                 ModelState.AddModelError("Email", "El email ya se encuentra uso, pruebe utilizando otro");
                 return View("Register");

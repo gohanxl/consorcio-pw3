@@ -44,7 +44,12 @@ namespace Services
             return userRepository.GetAll();
         }
 
-        public bool GetByEmail(string email)
+        public bool EmailExist(string email)
+        {
+            return userRepository.EmailExist(email);
+        }
+
+        public Usuario GetByEmail(string email)
         {
             return userRepository.GetByEmail(email);
         }
