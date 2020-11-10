@@ -5,6 +5,8 @@
     ViewBag.Title = "Home";
 }
 
+
+
 <div class="home">
     <h1 class="siblings-margin-30 text-center">Sistema para la Administración de Consorcios</h1>
 
@@ -12,7 +14,7 @@
         <h3 class="mb-4 text-center">Ingresar</h3>
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                <form action="/Home/Login" method="post" novalidate>
+                <form action="@(Request.QueryString["ReturnUrl"].IsEmpty() ? "/Home/Login" : "/Home/Login?ReturnUrl=" + Request.QueryString["ReturnUrl"])" method="post" novalidate>
                     @Html.AntiForgeryToken()
                     <div class="form-row">
                         <div class="form-group col-md-12">
@@ -26,7 +28,7 @@
                             @Html.ValidationMessageFor(Model => Model.Password, "", new { @class = "text-danger" })
                         </div>
                         @if (!ViewData.ModelState.IsValid)
-                        {   
+                        {
                             @Html.ValidationMessage("Error", new { @class = "error-home col-md-12" })
                         }
                     </div>

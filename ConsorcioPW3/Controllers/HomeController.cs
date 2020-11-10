@@ -5,6 +5,7 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Web.WebPages;
 
 namespace ConsorcioPW3.Controllers
 {
@@ -48,7 +49,7 @@ namespace ConsorcioPW3.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(FormCollection formCollection)
+        public ActionResult Login(FormCollection formCollection, string ReturnUrl)
         {
             string userEmail = formCollection["Email"];
             string userPassword = formCollection["Password"];
@@ -67,6 +68,10 @@ namespace ConsorcioPW3.Controllers
 
             Response.Cookies.Add(cookie);
 
+            if(!ReturnUrl.IsEmpty())
+            {
+                return Redirect(ReturnUrl);
+            }
             return Redirect("/Bienvenido");
 
         }
