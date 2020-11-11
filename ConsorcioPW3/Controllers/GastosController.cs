@@ -51,15 +51,17 @@ namespace ConsorcioPW3.Controllers
             return Redirect("/Gastos/Index");
         }
 
-        public ActionResult Update(FormCollection formCollection)
+        public ActionResult Update(int id)
         {
+            CargarListasEnViewBag();
+            Gasto gasto = gastoService.GetById(id);
+            return View(gasto);
+        }
 
-            Gasto gasto = new Gasto();
-
-            gasto.AnioExpensa =  Int32.Parse(formCollection["AnioExpensa"]);
-
+        [HttpPost]
+        public ActionResult Update(Gasto gasto)
+        {
             gastoService.Update(gasto);
-
             return View("/Gastos/Index");
         }
 

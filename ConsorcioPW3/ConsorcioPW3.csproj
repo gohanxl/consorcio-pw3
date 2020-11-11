@@ -162,6 +162,8 @@
     <Content Include="Views\Gastos\Index.cshtml" />
     <Content Include="Views\Shared\_pv_ActionConfirmation.cshtml" />
     <Content Include="Views\Shared\_pv_AddGastoModal.cshtml" />
+    <Content Include="Views\Shared\_pv_UpdateGastoModal.cshtml" />
+    <Content Include="Views\Gastos\Update.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
