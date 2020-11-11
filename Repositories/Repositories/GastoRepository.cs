@@ -75,6 +75,7 @@ namespace Repositories.Repositories
         {
             defaultObject.Attach(obj);
             context.Entry(obj).State = EntityState.Modified;
+            Save();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
