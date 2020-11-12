@@ -93,7 +93,7 @@ namespace ConsorcioPW3.Controllers
             cookie.Expires = DateTime.Now.AddDays(-1D);
             Response.Cookies.Add(cookie);
 
-            return View("Index");
+            return Redirect("Index");
         }
         
         private void UpdateLastLogin(Usuario user)
