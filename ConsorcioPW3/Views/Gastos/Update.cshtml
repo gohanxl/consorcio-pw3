@@ -24,6 +24,9 @@
 
 <form class="bg-white p-3 m-3" method="POST" action="/gastos/update" enctype="multipart/form-data">
     <div class="form-group">
+        @Html.HiddenFor(Model => Model.IdGasto)
+        @Html.HiddenFor(Model => Model.IdUsuarioCreador)
+        @Html.HiddenFor(Model => Model.FechaCreacion)
         <label for="nombre">Nombre</label>
         @Html.EditorFor(Model => Model.Nombre, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nombre" } })
         @Html.ValidationMessageFor(Model => Model.Nombre, "", new { @class = "text-danger" })
@@ -61,7 +64,7 @@
     </div>
     <div class="form-group">
         <label for="monto">Monto ($)</label>
-        @Html.EditorFor(Model => Model.Monto, new { htmlAttributes = new { @type = "number", @min = "0", @step = "any", @value = "0", @class = "form-control" } })
+        @Html.EditorFor(Model => Model.Monto, new { htmlAttributes = new { @type = "number", @min = "0", @step = "any", @class = "form-control" } })
         @Html.ValidationMessageFor(Model => Model.Monto, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">

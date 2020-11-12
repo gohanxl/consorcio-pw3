@@ -8,7 +8,13 @@ namespace Services
 {
     public class UsuarioService<T> where T : class
     {
-        UsuarioRepository<T> userRepository = new UsuarioRepository<T>();
+        UsuarioRepository<T> userRepository;
+
+        public UsuarioService(ConsortiumContext context)
+        {
+            ConsortiumContext ctx = context;
+            userRepository = new UsuarioRepository<T>(ctx);
+        }
 
         public void Delete(object id)
         {

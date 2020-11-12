@@ -11,7 +11,14 @@ namespace ConsorcioPW3.Controllers
 {
     public class HomeController : Controller
     {
-        UsuarioService<Usuario> usuarioService = new UsuarioService<Usuario>();
+        ConsortiumContext context = new ConsortiumContext();
+        UsuarioService<Usuario> usuarioService;
+
+        public HomeController()
+        {
+            usuarioService = new UsuarioService<Usuario>(context);
+        }
+
         // GET: Home
         public ActionResult Index()
         {

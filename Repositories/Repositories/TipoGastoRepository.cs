@@ -10,13 +10,13 @@ namespace Repositories.Repositories
 {
     public class TipoGastoRepository<T> : IEnumerable<T>, IRepository<T> where T : class
     {
-        ConsortiumContext context = null;
-        private DbSet<T> defaultObject = null;
+        ConsortiumContext tipoGastoContext;
+        private DbSet<T> defaultObject;
 
-        public TipoGastoRepository()
+        public TipoGastoRepository(ConsortiumContext context)
         {
-            this.context = new ConsortiumContext();
-            defaultObject = context.Set<T>();
+            tipoGastoContext = context;
+            defaultObject = tipoGastoContext.Set<T>();
         }
 
         public void Delete(object id)
@@ -50,7 +50,7 @@ namespace Repositories.Repositories
         {
             try
             {
-                context.SaveChanges();
+                tipoGastoContext.SaveChanges();
             }
             catch (DbEntityValidationException ex)
             {
@@ -73,7 +73,7 @@ namespace Repositories.Repositories
         public void Update(T obj)
         {
             defaultObject.Attach(obj);
-            context.Entry(obj).State = EntityState.Modified;
+            tipoGastoContext.Entry(obj).State = EntityState.Modified;
         }
 
         IEnumerator IEnumerable.GetEnumerator()

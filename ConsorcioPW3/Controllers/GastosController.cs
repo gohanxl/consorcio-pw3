@@ -14,11 +14,20 @@ namespace ConsorcioPW3.Controllers
     [Authorize]
     public class GastosController : Controller
     {
-        GastoService<Gasto> gastoService = new GastoService<Gasto>();
-        TipoGastoService<TipoGasto> tipoGastoService = new TipoGastoService<TipoGasto>();
-        ConsorcioService<Consorcio> consorcioService = new ConsorcioService<Consorcio>();
-        UsuarioService<Usuario> usuarioService = new UsuarioService<Usuario>();
-        
+        ConsortiumContext context = new ConsortiumContext();
+        GastoService<Gasto> gastoService;
+        TipoGastoService<TipoGasto> tipoGastoService;
+        ConsorcioService<Consorcio> consorcioService;
+        UsuarioService<Usuario> usuarioService;
+
+        public GastosController()
+        {
+            gastoService = new GastoService<Gasto>(context);
+            tipoGastoService = new TipoGastoService<TipoGasto>(context);
+            consorcioService = new ConsorcioService<Consorcio>(context);
+            usuarioService = new UsuarioService<Usuario>(context);
+        }
+
         // GET: Gastos
         [AllowAnonymous]
         public ActionResult Index()
@@ -65,7 +74,7 @@ namespace ConsorcioPW3.Controllers
             string path = GuardarArchivo(file);
             gasto.ArchivoComprobante = path;
             gastoService.Update(gasto);
-            return View("/Gastos/Index");
+            return Redirect("/Gastos/Index");
         }
 
         private void CargarListasEnViewBag()
