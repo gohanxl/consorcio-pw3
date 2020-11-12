@@ -62,6 +62,8 @@ namespace ConsorcioPW3.Controllers
                 return View("Index");
             }
 
+            UpdateLastLogin(userFound);
+
             FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, userFound.Email, DateTime.Now, DateTime.Now.AddMinutes(10), true, userFound.IdUsuario.ToString());
             String encrypt = FormsAuthentication.Encrypt(ticket);
             HttpCookie cookie = new HttpCookie("SESSION", encrypt);
@@ -86,6 +88,11 @@ namespace ConsorcioPW3.Controllers
 
             return View("Index");
         }
-
+        
+        private void UpdateLastLogin(Usuario user)
+        {
+            user.FechaUltLogin = DateTime.Now;
+            usuarioService.Update(user);
+        }
     }
 }

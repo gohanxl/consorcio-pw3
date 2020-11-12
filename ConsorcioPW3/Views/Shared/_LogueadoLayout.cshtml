@@ -1,25 +1,34 @@
 ﻿@{
     Layout = "~/Views/Shared/_BaseLayout.cshtml";
-    ViewBag.Title = "AnonimoLayout";
+    ViewBag.Title = "";
 }
 
 @section Header {
 
-    <nav class="navbar navbar-inverse navbar-fixed-top primary-color">
+    <nav class="navbar navbar-expand-lg navbar-fixed-top primary-color">
         <div class="container">
-            <div class="navbar-header">
-                <a href="@Url.Action("Index", "Bienvenido")" id="loginLink" class="navbar-brand">
-                    <img class="main-logo" src="~/Assets/Pictures/logo.png" alt="logo-inicio" />
-                </a>
-                <a href="@Url.Action("Index", "MyConsortiums")" id="my-consortiums" class="text-decoration-none nav-item">
-                    <span class="text-white">Mis Consorcios</span>
-                </a>
+            <a class="navbar-brand" href="@Url.Action("Index", "Bienvenido")" id="loginLink">
+                <img class="main-logo" src="~/Assets/Pictures/logo.png" alt="logo-inicio" />
+            </a>
+            <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 @if (HttpContext.Current.User.Identity.IsAuthenticated)
                 {
-                    <span class="text-white">Bienvenido @HttpContext.Current.User.Identity.Name</span>
-                    @Html.ActionLink("Cerrar sesion", "Logout", "Home", null, new { @class = "btn btn-danger text-white px-5 mx-3" })
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a href="@Url.Action("Index", "MyConsortiums")" id="my-consortiums" class="text-decoration-none">
+                                <span class="text-white">Mis Consorcios</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="my-1">
+                        <span class="text-white">Bienvenido @HttpContext.Current.User.Identity.Name</span>
+                        @Html.ActionLink("Cerrar sesion", "Logout", "Home", null, new { @class = "btn btn-danger text-white" })
+                    </div>
                 }
-
             </div>
         </div>
     </nav>

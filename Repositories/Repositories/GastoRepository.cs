@@ -73,7 +73,7 @@ namespace Repositories.Repositories
 
         public void Update(T obj)
         {
-            defaultObject.Attach(obj);
+            defaultObject.Add(obj);
             context.Entry(obj).State = EntityState.Modified;
             Save();
         }

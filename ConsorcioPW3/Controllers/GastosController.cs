@@ -20,6 +20,7 @@ namespace ConsorcioPW3.Controllers
         UsuarioService<Usuario> usuarioService = new UsuarioService<Usuario>();
         
         // GET: Gastos
+        [AllowAnonymous]
         public ActionResult Index()
         {
             IEnumerable<Gasto> gastos = gastoService.GetAll();
@@ -34,13 +35,13 @@ namespace ConsorcioPW3.Controllers
             Usuario usuario = usuarioService.GetByEmail(email);
             gasto.FechaCreacion = DateTime.Now;
             gasto.IdUsuarioCreador = usuario.IdUsuario;
-            if (file != null && file.ContentLength > 0)
+            if (file == null && file.ContentLength == 0)
             {
-                var fileName = Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath("~/Assets/Gastos/"), fileName);
-                file.SaveAs(path);
-                gasto.ArchivoComprobante = path;
+                //No hay archivo
+                return Redirect("");
             }
+            string path = GuardarArchivo(file);
+            gasto.ArchivoComprobante = path;
             gastoService.Insert(gasto);
             return Redirect("/Gastos/Index");
         }
@@ -59,8 +60,10 @@ namespace ConsorcioPW3.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update(Gasto gasto)
+        public ActionResult Update(Gasto gasto, HttpPostedFileBase file)
         {
+            string path = GuardarArchivo(file);
+            gasto.ArchivoComprobante = path;
             gastoService.Update(gasto);
             return View("/Gastos/Index");
         }
@@ -81,6 +84,14 @@ namespace ConsorcioPW3.Controllers
         {
             IEnumerable<Consorcio> consorcios = consorcioService.GetAll();
             ViewBag.Consorcios = consorcios;
+        }
+
+        private string GuardarArchivo(HttpPostedFileBase file)
+        {
+            var fileName = Path.GetFileName(file.FileName);
+            var path = Path.Combine(Server.MapPath("~/Assets/Gastos/"), fileName);
+            file.SaveAs(path);
+            return path;
         }
     }
 }

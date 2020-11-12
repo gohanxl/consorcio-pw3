@@ -21,7 +21,8 @@
     }).ToList();
 }
 
-<form class="modal-body" method="POST" action="/gastos/add" enctype="multipart/form-data">
+
+<form class="bg-white p-3 m-3" method="POST" action="/gastos/update" enctype="multipart/form-data">
     <div class="form-group">
         <label for="nombre">Nombre</label>
         @Html.EditorFor(Model => Model.Nombre, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nombre" } })
@@ -50,17 +51,17 @@
     </div>
     <div class="form-group">
         <label for="anoExpensa">Año Expensa</label>
-        @Html.EditorFor(model => model.AnioExpensa, new { htmlAttributes = new { @type = "number", @min = "0", @class = "form-control" } })
+        @Html.EditorFor(Model => Model.AnioExpensa, new { htmlAttributes = new { @type = "number", @min = "0", @class = "form-control" } })
         @Html.ValidationMessageFor(Model => Model.AnioExpensa, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">
         <label for="anoExpensa">Mes Expensa</label>
-        @Html.EditorFor(model => model.MesExpensa, new { htmlAttributes = new { @type = "number", @min = "0", @max = "12", @class = "form-control" } })
+        @Html.EditorFor(Model => Model.MesExpensa, new { htmlAttributes = new { @type = "number", @min = "0", @max = "12", @class = "form-control" } })
         @Html.ValidationMessageFor(Model => Model.MesExpensa, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">
         <label for="monto">Monto ($)</label>
-        @Html.EditorFor(model => model.Monto, new { htmlAttributes = new { @type = "number", @min = "0", @step = "any", @value = "0", @class = "form-control" } })
+        @Html.EditorFor(Model => Model.Monto, new { htmlAttributes = new { @type = "number", @min = "0", @step = "any", @value = "0", @class = "form-control" } })
         @Html.ValidationMessageFor(Model => Model.Monto, "", new { @class = "text-danger" })
     </div>
     <div class="form-group">

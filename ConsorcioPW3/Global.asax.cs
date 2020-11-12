@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
+using System.Web.Optimization;
+using ConsorcioPW3.App_Start;
 
 namespace ConsorcioPW3
 {
@@ -15,6 +17,7 @@ namespace ConsorcioPW3
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
         public void Application_PostAuthenticateRequest()
