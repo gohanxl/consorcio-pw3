@@ -1,4 +1,5 @@
-﻿using Repositories.Interfaces;
+﻿using Repositories;
+using Repositories.Interfaces;
 using Repositories.Repositories;
 using System;
 using System.Collections;
@@ -11,16 +12,23 @@ namespace Services.Consorcio
 {
     public class ConsorcioService<T> : IEnumerable<T>, IRepository<T> where T : class
     {
-        ConsorcioRepository<T> gastoRepository = new ConsorcioRepository<T>();
+
+        ConsorcioRepository<T> consorcioRepository;
+
+        public ConsorcioService(ConsortiumContext context)
+        {
+            ConsortiumContext ctx = context;
+            consorcioRepository = new ConsorcioRepository<T>(ctx);
+        }
 
         public void Delete(object id)
         {
-            gastoRepository.Delete(id);
+            consorcioRepository.Delete(id);
         }
 
         public T GetById(object id)
         {
-            return gastoRepository.GetById(id);
+            return consorcioRepository.GetById(id);
         }
 
         public IEnumerator<T> GetEnumerator()
@@ -30,21 +38,21 @@ namespace Services.Consorcio
 
         public void Insert(T obj)
         {
-            gastoRepository.Insert(obj);
+            consorcioRepository.Insert(obj);
         }
 
         public void Save()
         {
-            gastoRepository.Save();
+            consorcioRepository.Save();
         }
 
         public void Update(T obj)
         {
-            gastoRepository.Update(obj);
+            consorcioRepository.Update(obj);
         }
         public IEnumerable<T> GetAll()
         {
-            return gastoRepository.GetAll();
+            return consorcioRepository.GetAll();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

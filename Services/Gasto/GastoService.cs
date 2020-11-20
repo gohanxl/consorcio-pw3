@@ -1,4 +1,5 @@
-﻿using Repositories.Repositories;
+﻿using Repositories;
+using Repositories.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,13 @@ namespace Services.Gasto
 {
     public class GastoService<T> where T : class
     {
-        GastoRepository<T> gastoRepository = new GastoRepository<T>();
+        GastoRepository<T> gastoRepository;
+
+        public GastoService(ConsortiumContext context)
+        {
+            ConsortiumContext ctx = context;
+            gastoRepository = new GastoRepository<T>(ctx);
+        }
 
         public void Delete(object id)
         {

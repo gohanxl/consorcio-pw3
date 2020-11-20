@@ -28,6 +28,7 @@
                 </button>
             </div>
             <form class="modal-body" method="POST" action="/gastos/add" enctype="multipart/form-data">
+                @Html.HiddenFor(Model => Model.IdGasto)
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
                     @Html.EditorFor(Model => Model.Nombre, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nombre" } })

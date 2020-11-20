@@ -11,13 +11,13 @@ namespace Repositories.Repositories
 {
     public class ConsorcioRepository<T> : IEnumerable<T>, IRepository<T> where T : class
     {
-        ConsortiumContext context = null;
-        private DbSet<T> defaultObject = null;
+        ConsortiumContext consorcioContext;
+        private DbSet<T> defaultObject;
 
-        public ConsorcioRepository()
+        public ConsorcioRepository(ConsortiumContext context)
         {
-            this.context = new ConsortiumContext();
-            defaultObject = context.Set<T>();
+            consorcioContext = context;
+            defaultObject = consorcioContext.Set<T>();
         }
 
         public void Delete(object id)
@@ -52,7 +52,7 @@ namespace Repositories.Repositories
         {
             try
             {
-                context.SaveChanges();
+                consorcioContext.SaveChanges();
             }
             catch (DbEntityValidationException ex)
             {
@@ -75,7 +75,7 @@ namespace Repositories.Repositories
         public void Update(T obj)
         {
             defaultObject.Attach(obj);
-            context.Entry(obj).State = EntityState.Modified;
+            consorcioContext.Entry(obj).State = EntityState.Modified;
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()

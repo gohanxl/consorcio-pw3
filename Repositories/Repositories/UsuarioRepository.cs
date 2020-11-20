@@ -11,13 +11,13 @@ namespace Repositories.Repositories
 {
     public class UsuarioRepository<T> : IEnumerable<T>, IRepository<T> where T : class
     {
-        ConsortiumContext context = null;
-        private DbSet<T> defaultObject = null;
+        ConsortiumContext usuarioContext;
+        private DbSet<T> defaultObject;
 
-        public UsuarioRepository()
+        public UsuarioRepository(ConsortiumContext context)
         {
-            this.context = new ConsortiumContext();
-            defaultObject = context.Set<T>();
+            usuarioContext = context;
+            defaultObject = usuarioContext.Set<T>();
         }
 
         public void Delete(object id)
@@ -50,7 +50,7 @@ namespace Repositories.Repositories
         {   
             try
             {
-                context.SaveChanges();
+                usuarioContext.SaveChanges();
             }
             catch (DbEntityValidationException ex)
             {
@@ -73,7 +73,7 @@ namespace Repositories.Repositories
         public void Update(T obj)
         {
             defaultObject.Attach(obj);
-            context.Entry(obj).State = EntityState.Modified;
+            usuarioContext.Entry(obj).State = EntityState.Modified;
         }
         public IEnumerable<T> GetAll()
         {
@@ -87,19 +87,19 @@ namespace Repositories.Repositories
 
         public bool EmailExist(string email)
         {
-            var hasUserWithEmail = context.Usuario.Any(user => user.Email == email);
+            var hasUserWithEmail = usuarioContext.Usuario.Any(user => user.Email == email);
 
             return hasUserWithEmail;
         }
 
         public Usuario GetByEmail(string email)
         {
-            return context.Usuario.FirstOrDefault(user => user.Email == email);
+            return usuarioContext.Usuario.FirstOrDefault(user => user.Email == email);
         }
 
         public Usuario IsUserValid(string email, string password)
         {
-            Usuario userFound = context.Usuario.Single(user => user.Email == email);
+            Usuario userFound = usuarioContext.Usuario.Single(user => user.Email == email);
             if (userFound == null)
             {
                 return null;

@@ -14,12 +14,22 @@ namespace ConsorcioPW3.Controllers
     [Authorize]
     public class GastosController : Controller
     {
-        GastoService<Gasto> gastoService = new GastoService<Gasto>();
-        TipoGastoService<TipoGasto> tipoGastoService = new TipoGastoService<TipoGasto>();
-        ConsorcioService<Consorcio> consorcioService = new ConsorcioService<Consorcio>();
-        UsuarioService<Usuario> usuarioService = new UsuarioService<Usuario>();
-        
+        ConsortiumContext context = new ConsortiumContext();
+        GastoService<Gasto> gastoService;
+        TipoGastoService<TipoGasto> tipoGastoService;
+        ConsorcioService<Consorcio> consorcioService;
+        UsuarioService<Usuario> usuarioService;
+
+        public GastosController()
+        {
+            gastoService = new GastoService<Gasto>(context);
+            tipoGastoService = new TipoGastoService<TipoGasto>(context);
+            consorcioService = new ConsorcioService<Consorcio>(context);
+            usuarioService = new UsuarioService<Usuario>(context);
+        }
+
         // GET: Gastos
+        [AllowAnonymous]
         public ActionResult Index()
         {
             IEnumerable<Gasto> gastos = gastoService.GetAll();
@@ -34,13 +44,13 @@ namespace ConsorcioPW3.Controllers
             Usuario usuario = usuarioService.GetByEmail(email);
             gasto.FechaCreacion = DateTime.Now;
             gasto.IdUsuarioCreador = usuario.IdUsuario;
-            if (file != null && file.ContentLength > 0)
+            if (file == null && file.ContentLength == 0)
             {
-                var fileName = Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath("~/Assets/Gastos/"), fileName);
-                file.SaveAs(path);
-                gasto.ArchivoComprobante = path;
+                //No hay archivo
+                return Redirect("");
             }
+            string path = GuardarArchivo(file);
+            gasto.ArchivoComprobante = path;
             gastoService.Insert(gasto);
             return Redirect("/Gastos/Index");
         }
@@ -51,16 +61,20 @@ namespace ConsorcioPW3.Controllers
             return Redirect("/Gastos/Index");
         }
 
-        public ActionResult Update(FormCollection formCollection)
+        public ActionResult Update(int id)
         {
+            CargarListasEnViewBag();
+            Gasto gasto = gastoService.GetById(id);
+            return View(gasto);
+        }
 
-            Gasto gasto = new Gasto();
-
-            gasto.AnioExpensa =  Int32.Parse(formCollection["AnioExpensa"]);
-
+        [HttpPost]
+        public ActionResult Update(Gasto gasto, HttpPostedFileBase file)
+        {
+            string path = GuardarArchivo(file);
+            gasto.ArchivoComprobante = path;
             gastoService.Update(gasto);
-
-            return View("/Gastos/Index");
+            return Redirect("/Gastos/Index");
         }
 
         private void CargarListasEnViewBag()
@@ -79,6 +93,14 @@ namespace ConsorcioPW3.Controllers
         {
             IEnumerable<Consorcio> consorcios = consorcioService.GetAll();
             ViewBag.Consorcios = consorcios;
+        }
+
+        private string GuardarArchivo(HttpPostedFileBase file)
+        {
+            var fileName = Path.GetFileName(file.FileName);
+            var path = Path.Combine(Server.MapPath("~/Assets/Gastos/"), fileName);
+            file.SaveAs(path);
+            return path;
         }
     }
 }

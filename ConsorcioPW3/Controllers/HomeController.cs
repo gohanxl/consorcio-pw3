@@ -11,7 +11,14 @@ namespace ConsorcioPW3.Controllers
 {
     public class HomeController : Controller
     {
-        UsuarioService<Usuario> usuarioService = new UsuarioService<Usuario>();
+        ConsortiumContext context = new ConsortiumContext();
+        UsuarioService<Usuario> usuarioService;
+
+        public HomeController()
+        {
+            usuarioService = new UsuarioService<Usuario>(context);
+        }
+
         // GET: Home
         public ActionResult Index()
         {
@@ -62,6 +69,8 @@ namespace ConsorcioPW3.Controllers
                 return View("Index");
             }
 
+            UpdateLastLogin(userFound);
+
             FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, userFound.Email, DateTime.Now, DateTime.Now.AddMinutes(10), true, userFound.IdUsuario.ToString());
             String encrypt = FormsAuthentication.Encrypt(ticket);
             HttpCookie cookie = new HttpCookie("SESSION", encrypt);
@@ -84,8 +93,13 @@ namespace ConsorcioPW3.Controllers
             cookie.Expires = DateTime.Now.AddDays(-1D);
             Response.Cookies.Add(cookie);
 
-            return View("Index");
+            return Redirect("Index");
         }
-
+        
+        private void UpdateLastLogin(Usuario user)
+        {
+            user.FechaUltLogin = DateTime.Now;
+            usuarioService.Update(user);
+        }
     }
 }

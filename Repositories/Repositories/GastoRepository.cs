@@ -10,13 +10,13 @@ namespace Repositories.Repositories
 {
     public class GastoRepository<T> : IEnumerable<T>, IRepository<T> where T : class
     {
-        ConsortiumContext context = null;
-        private DbSet<T> defaultObject = null;
+        ConsortiumContext gastoContext;
+        private DbSet<T> defaultObject;
 
-        public GastoRepository()
+        public GastoRepository(ConsortiumContext context)
         {
-            this.context = new ConsortiumContext();
-            defaultObject = context.Set<T>();
+            gastoContext = context;
+            defaultObject = gastoContext.Set<T>();
         }
 
         public void Delete(object id)
@@ -51,7 +51,7 @@ namespace Repositories.Repositories
         {
             try
             {
-                context.SaveChanges();
+                gastoContext.SaveChanges();
             }
             catch (DbEntityValidationException ex)
             {
@@ -73,8 +73,9 @@ namespace Repositories.Repositories
 
         public void Update(T obj)
         {
-            defaultObject.Attach(obj);
-            context.Entry(obj).State = EntityState.Modified;
+            defaultObject.Add(obj);
+            gastoContext.Entry(obj).State = EntityState.Modified;
+            Save();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

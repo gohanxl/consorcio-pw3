@@ -3,13 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Repositories;
 using Repositories.Repositories;
 
 namespace Services.Gasto
 {
     public class TipoGastoService<T> where T : class
     {
-        TipoGastoRepository<T> tipoGastoRepository = new TipoGastoRepository<T>();
+        TipoGastoRepository<T> tipoGastoRepository;
+
+        public TipoGastoService(ConsortiumContext context)
+        {
+            ConsortiumContext ctx = context;
+            tipoGastoRepository = new TipoGastoRepository<T>(ctx);
+        }
 
         public void Delete(object id)
         {
