@@ -1,6 +1,7 @@
 ﻿using Repositories;
 using Services.Consorcio;
 using Services.Provincia;
+using Services.Unidad;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +18,14 @@ namespace ConsorcioPW3.Controllers
             ConsortiumContext context = new ConsortiumContext();
             ConsorcioService<Consorcio> consorcioService;
             ProvinciaService<Provincia> provinciaService;
+            UnidadService<Unidad> unidadService;
+
 
             public consorciosController()
             {
                 consorcioService = new ConsorcioService<Consorcio>(context);
                 provinciaService = new ProvinciaService<Provincia>(context);
+                unidadService = new UnidadService<Unidad>(context);
             }
 
             // GET: consorcios
