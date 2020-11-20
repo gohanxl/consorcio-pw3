@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Gasto
+namespace Repositories
 {
-    [MetadataType(typeof(GastoEntity))]
+    [MetadataType(typeof(GastoMetadata))]
     public partial class Gasto
     {
 
