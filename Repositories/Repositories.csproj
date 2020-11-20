@@ -111,8 +111,10 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Repositories\ConsorcioRepository.cs" />
+    <Compile Include="Repositories\ProvinciaRepository.cs" />
     <Compile Include="Repositories\GastoRepository.cs" />
     <Compile Include="Repositories\TipoGastoRepository.cs" />
+    <Compile Include="Repositories\UnidadRepository.cs" />
     <Compile Include="Repositories\UsuarioRepository.cs" />
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>

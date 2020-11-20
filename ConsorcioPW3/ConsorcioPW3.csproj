@@ -249,6 +249,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BienvenidoController.cs" />
+    <Compile Include="Controllers\ConsorcioController.cs" />
     <Compile Include="Controllers\GastosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TipoGastoController.cs" />
@@ -307,6 +308,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Assets\Gastos\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Consorcio\" />
     <Folder Include="Views\TipoGasto\" />
   </ItemGroup>
   <ItemGroup>
