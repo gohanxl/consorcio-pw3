@@ -26,7 +26,7 @@
         <tbody>
             @foreach (var gasto in Model)
             {
-                <div id="deleteGastoModal" class="modal" tabindex="-1" role="dialog">
+                <div id="deleteGastoModal-@gasto.IdGasto" class="modal" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -36,10 +36,10 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p>Seguro que desea eliminar</p>
+                                <p>Seguro que desea eliminar el gasto "@gasto.Nombre" del consorcio "@gasto.Consorcio.Nombre" </p>
                             </div>
                             <div class="modal-footer">
-                                @Html.ActionLink("Delete", "Delete", "Gastos", new { id = gasto.IdGasto }, new { @class = "btn btn-danger" })
+                                @Html.ActionLink("Eliminar", "Delete", "Gastos", new { id = gasto.IdGasto }, new { @class = "btn btn-danger" })
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                     <td>
                         <div class="text-center">
                             <a class="fa fa-edit text-primary m-1" href="/Gastos/Update/@gasto.IdGasto"></a>
-                            <a class="fa fa-trash text-danger m-1" data-toggle="modal" data-target="#deleteGastoModal"></a>
+                            <a class="fa fa-trash text-danger m-1" data-toggle="modal" data-target="#deleteGastoModal-@gasto.IdGasto"></a>
                         </div>
                     </td>
                 </tr>
