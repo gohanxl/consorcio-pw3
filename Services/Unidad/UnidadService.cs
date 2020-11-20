@@ -1,55 +1,16 @@
 ﻿using Repositories;
-using Repositories.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Unidad
+namespace Services
 {
-    public class UnidadService<T> where T : class
+    public class UnidadService : BaseService<UnidadRepository, Unidad>
     {
-        UnidadRepository<T> unidadRepository;
-
-        public UnidadService(ConsortiumContext context)
+        public UnidadService(ConsortiumContext context) : base(context)
         {
-            ConsortiumContext ctx = context;
-            unidadRepository = new UnidadRepository<T>(ctx);
-        }
-
-        public void Delete(object id)
-        {
-            unidadRepository.Delete(id);
-        }
-
-        public T GetById(object id)
-        {
-            return unidadRepository.GetById(id);
-        }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Insert(T obj)
-        {
-            unidadRepository.Insert(obj);
-        }
-
-        public void Save()
-        {
-            unidadRepository.Save();
-        }
-
-        public void Update(T obj)
-        {
-            unidadRepository.Update(obj);
-        }
-        public IEnumerable<T> GetAll()
-        {
-            return unidadRepository.GetAll();
         }
     }
 }

@@ -1,55 +1,16 @@
 ﻿using Repositories;
-using Repositories.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Gasto
+namespace Services
 {
-    public class GastoService<T> where T : class
+    public class GastoService : BaseService<GastoRepository, Gasto>
     {
-        GastoRepository<T> gastoRepository;
-
-        public GastoService(ConsortiumContext context)
+        public GastoService(ConsortiumContext context) : base(context)
         {
-            ConsortiumContext ctx = context;
-            gastoRepository = new GastoRepository<T>(ctx);
-        }
-
-        public void Delete(object id)
-        {
-            gastoRepository.Delete(id);
-        }
-
-        public T GetById(object id)
-        {
-            return gastoRepository.GetById(id);
-        }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Insert(T obj)
-        {
-            gastoRepository.Insert(obj);
-        }
-
-        public void Save()
-        {
-            gastoRepository.Save();
-        }
-
-        public void Update(T obj)
-        {
-            gastoRepository.Update(obj);
-        }
-        public IEnumerable<T> GetAll()
-        {
-            return gastoRepository.GetAll();
         }
     }
 }

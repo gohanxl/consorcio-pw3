@@ -1,68 +1,28 @@
-﻿using Entities;
-using Repositories;
-using Repositories.Repositories;
+﻿using Repositories;
 using System;
 using System.Collections.Generic;
 
 namespace Services
 {
-    public class UsuarioService<T> where T : class
+    public class UsuarioService : BaseService<UsuarioRepository, Usuario>
     {
-        UsuarioRepository<T> userRepository;
-
-        public UsuarioService(ConsortiumContext context)
+        public UsuarioService(ConsortiumContext context) : base(context)
         {
-            ConsortiumContext ctx = context;
-            userRepository = new UsuarioRepository<T>(ctx);
-        }
-
-        public void Delete(object id)
-        {
-            userRepository.Delete(id);
-        }
-
-        public T GetById(object id)
-        {
-            return userRepository.GetById(id);
-        }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Insert(T obj)
-        {
-            userRepository.Insert(obj);
-        }
-
-        public void Save()
-        {
-            userRepository.Save();
-        }
-
-        public void Update(T obj)
-        {
-            userRepository.Update(obj);
-        }
-        public IEnumerable<T> GetAll()
-        {
-            return userRepository.GetAll();
         }
 
         public bool EmailExist(string email)
         {
-            return userRepository.EmailExist(email);
+            return repo.EmailExist(email);
         }
 
         public Usuario GetByEmail(string email)
         {
-            return userRepository.GetByEmail(email);
+            return repo.GetByEmail(email);
         }
 
         public Usuario IsUserValid(string email, string password)
         {
-            return userRepository.IsUserValid(email, password);
+            return repo.IsUserValid(email, password);
         }
     }
 }
