@@ -119,6 +119,7 @@
     <Compile Include="Provincia.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\BaseRepositroy.cs" />
     <Compile Include="Repositories\ConsorcioRepository.cs" />
     <Compile Include="Repositories\ProvinciaRepository.cs" />
     <Compile Include="Repositories\GastoRepository.cs" />
@@ -137,6 +138,14 @@
     <Compile Include="Usuario.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Validations\Consorcio.cs" />
+    <Compile Include="Validations\ConsorcioMetadata.cs" />
+    <Compile Include="Validations\Gasto.cs" />
+    <Compile Include="Validations\GastoMetadata.cs" />
+    <Compile Include="Validations\Register.cs" />
+    <Compile Include="Validations\RegisterMetadata.cs" />
+    <Compile Include="Validations\Usuario.cs" />
+    <Compile Include="Validations\UsuarioMetadata.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

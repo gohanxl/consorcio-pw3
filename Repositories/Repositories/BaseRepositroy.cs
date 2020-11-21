@@ -26,7 +26,7 @@ namespace Repositories
             Save();
         }
 
-        public List<T> GetAll()
+        public virtual List<T> GetAll()
         {
             return dbSet.ToList();
         }

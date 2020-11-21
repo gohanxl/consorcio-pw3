@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,7 +9,8 @@ namespace ConsorcioPW3.Controllers
 {
     public class TipoGastoController : Controller
     {
-        // GET: TipoGasto
+        ConsortiumContext context;
+
         public ActionResult Index()
         {
             return View();

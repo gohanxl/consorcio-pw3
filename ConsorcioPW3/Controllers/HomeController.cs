@@ -11,15 +11,15 @@ namespace ConsorcioPW3.Controllers
 {
     public class HomeController : Controller
     {
-        ConsortiumContext context = new ConsortiumContext();
-        UsuarioService<Usuario> usuarioService;
+        ConsortiumContext context;
+        UsuarioService usuarioService;
 
         public HomeController()
         {
-            usuarioService = new UsuarioService<Usuario>(context);
+            context = new ConsortiumContext();
+            usuarioService = new UsuarioService(context);
         }
 
-        // GET: Home
         public ActionResult Index()
         {
             return View();
@@ -27,46 +27,42 @@ namespace ConsorcioPW3.Controllers
 
         public ActionResult Register()
         {
-            return View("Register");
+            return View();
         }
 
         [HttpPost]
-        public ActionResult Register(FormCollection formCollection)
+        public ActionResult Register(Usuario user)
         {
 
-            Usuario usuario = new Usuario();
-            var userEmail = formCollection["Email"];
-
-            if (usuarioService.EmailExist(userEmail))
+            if (usuarioService.EmailExist(user.Email))
             {
                 ModelState.AddModelError("Email", "El email ya se encuentra uso, pruebe utilizando otro");
-                return View("Register");
+                return View();
             }
 
-            usuario.Email = userEmail;
+            user.FechaRegistracion = DateTime.Now;
 
-            usuario.Password = formCollection["Password"];
+            usuarioService.Insert(user);
 
-            usuario.FechaRegistracion = DateTime.Now;
-
-            usuarioService.Insert(usuario);
-
-            return View("Index");
+            return RedirectToAction("Login");
 
         }
 
-        [HttpPost]
-        public ActionResult Login(FormCollection formCollection, string ReturnUrl)
+        public ActionResult Login()
         {
-            string userEmail = formCollection["Email"];
-            string userPassword = formCollection["Password"];
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(Usuario user, string ReturnUrl)
+        {
             
-            Usuario userFound = usuarioService.IsUserValid(userEmail, userPassword);
+            Usuario userFound = usuarioService.IsUserValid(user.Email, user.Password);
 
             if (userFound == null)
             {
                 ModelState.AddModelError("Error", "Usuario o contraseña invalidos");
-                return View("Index");
+                return View();
             }
 
             UpdateLastLogin(userFound);
@@ -93,7 +89,7 @@ namespace ConsorcioPW3.Controllers
             cookie.Expires = DateTime.Now.AddDays(-1D);
             Response.Cookies.Add(cookie);
 
-            return Redirect("Index");
+            return RedirectToAction("Index");
         }
         
         private void UpdateLastLogin(Usuario user)

@@ -1,0 +1,19 @@
+﻿@model Repositories.Consorcio
+
+@{
+    Layout = "~/Views/Shared/_LogueadoLayout.cshtml";
+    ViewBag.Title = "Eliminar consorcio";
+}
+
+<section class="container bg-white rounded mb-3 p-3">
+    <h3>Estas seguro que deseas eliminar el consorcio @Html.DisplayFor(model => model.Nombre)?</h3>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
+    }
+</section>
