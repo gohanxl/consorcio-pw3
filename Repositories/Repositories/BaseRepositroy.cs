@@ -66,7 +66,7 @@ namespace Repositories
             }
         }
 
-        public void Update(T obj)
+        public virtual void Update(T obj)
         {
             dbSet.Attach(obj);
             ctx.Entry(obj).State = EntityState.Modified;

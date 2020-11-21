@@ -307,6 +307,7 @@
     <Content Include="Views\Consorcios\Index.cshtml" />
     <Content Include="Views\Consorcios\Add.cshtml" />
     <Content Include="Views\Consorcios\Delete.cshtml" />
+    <Content Include="Views\Consorcios\Update.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -18,5 +18,18 @@ namespace Repositories
         {
             return ctx.Consorcio.OrderBy(c => c.Nombre).ToList();
         }
+
+        public override void Update(Consorcio obj)
+        {
+            Consorcio consorcioFound = GetById(obj.IdConsorcio);
+            consorcioFound.Nombre = obj.Nombre;
+            consorcioFound.IdProvincia = obj.IdProvincia;
+            consorcioFound.Ciudad = obj.Ciudad;
+            consorcioFound.Calle = obj.Calle;
+            consorcioFound.Altura = obj.Altura;
+            consorcioFound.DiaVencimientoExpensas = obj.DiaVencimientoExpensas;
+            consorcioFound.Provincia = obj.Provincia;
+            ctx.SaveChanges();
+        }
     }
 }
