@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace ConsorcioPW3.Controllers
 {
-    public class ExpensaApiController : ApiController
+    public class ExpensasApiController : ApiController
     {
         [HttpGet]
         public string Get()

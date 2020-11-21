@@ -67,8 +67,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseService.cs" />
     <Compile Include="Consorcio\ConsorcioService.cs" />
     <Compile Include="Gasto\TipoGastoService.cs" />
+    <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Gasto\GastoService.cs" />
     <Compile Include="Provincia\ProvinciaService.cs" />
@@ -76,10 +78,6 @@
     <Compile Include="Usuario\UsuarioService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Entities\Entities.csproj">
-      <Project>{e26a9ab2-ac43-4f94-821b-aceff1990f06}</Project>
-      <Name>Entities</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Repositories\Repositories.csproj">
       <Project>{e4cc8ff3-785c-4f79-b0b9-b00adc017af7}</Project>
       <Name>Repositories</Name>

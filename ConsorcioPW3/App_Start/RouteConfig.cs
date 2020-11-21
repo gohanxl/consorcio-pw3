@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace ConsorcioPW3
+namespace ConsorcioPW3.App_Start
 {
     public class RouteConfig
     {
@@ -20,10 +20,10 @@ namespace ConsorcioPW3
             );
 
             routes.MapRoute(
-                name: "Bienvenidos",
-                url: "Bienvenido/{action}",
-                defaults: new { controller = "Bienvenido", action = "Bienvenido" }
-            );
+                name: "Consorcio",
+                url: "consorcios/{idConsorcio}/{controller}/{action}/{id}",
+                defaults: new { id = UrlParameter.Optional }
+                );
         }
     }
 }

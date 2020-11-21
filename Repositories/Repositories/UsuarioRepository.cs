@@ -23,19 +23,19 @@ namespace Repositories
 
         public bool EmailExist(string email)
         {
-            var hasUserWithEmail = usuarioContext.Usuario.Any(user => user.Email == email);
+            var hasUserWithEmail = ctx.Usuario.Any(user => user.Email == email);
 
             return hasUserWithEmail;
         }
 
         public Usuario GetByEmail(string email)
         {
-            return usuarioContext.Usuario.FirstOrDefault(user => user.Email == email);
+            return ctx.Usuario.FirstOrDefault(user => user.Email == email);
         }
 
         public Usuario IsUserValid(string email, string password)
         {
-            Usuario userFound = usuarioContext.Usuario.Single(user => user.Email == email);
+            Usuario userFound = ctx.Usuario.Single(user => user.Email == email);
             if (userFound == null)
             {
                 return null;

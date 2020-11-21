@@ -1,7 +1,5 @@
 ﻿using Repositories;
 using Services;
-using Services.Consorcio;
-using Services.Gasto;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,21 +12,21 @@ namespace ConsorcioPW3.Controllers
     [Authorize]
     public class GastosController : Controller
     {
-        ConsortiumContext context = new ConsortiumContext();
-        GastoService<Gasto> gastoService;
-        TipoGastoService<TipoGasto> tipoGastoService;
-        ConsorcioService<Consorcio> consorcioService;
-        UsuarioService<Usuario> usuarioService;
+        ConsortiumContext context;
+        GastoService gastoService;
+        TipoGastoService tipoGastoService;
+        ConsorcioService consorcioService;
+        UsuarioService usuarioService;
 
         public GastosController()
         {
-            gastoService = new GastoService<Gasto>(context);
-            tipoGastoService = new TipoGastoService<TipoGasto>(context);
-            consorcioService = new ConsorcioService<Consorcio>(context);
-            usuarioService = new UsuarioService<Usuario>(context);
+            context = new ConsortiumContext();
+            gastoService = new GastoService(context);
+            tipoGastoService = new TipoGastoService(context);
+            consorcioService = new ConsorcioService(context);
+            usuarioService = new UsuarioService(context);
         }
 
-        // GET: Gastos
         [AllowAnonymous]
         public ActionResult Index()
         {

@@ -6,6 +6,7 @@ using System.Web.Routing;
 using System.Web.Security;
 using ConsorcioPW3.App_Start;
 using System.Web.Http;
+using System.Web.Optimization;
 
 namespace ConsorcioPW3
 {
@@ -16,6 +17,7 @@ namespace ConsorcioPW3
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             HttpConfiguration config = GlobalConfiguration.Configuration;
             config.Formatters.JsonFormatter

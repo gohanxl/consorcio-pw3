@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace ConsorcioPW3.Controllers
 {
+    [Authorize]
     public class BienvenidoController : Controller
     {
-        // GET: Bienvenido
         public ActionResult Index()
         {
             return View();

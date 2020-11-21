@@ -13,5 +13,10 @@ namespace Repositories
         public ConsorcioRepository(ConsortiumContext context) : base(context)
         {
         }
+
+        override public List<Consorcio> GetAll()
+        {
+            return ctx.Consorcio.OrderBy(c => c.Nombre).ToList();
+        }
     }
 }

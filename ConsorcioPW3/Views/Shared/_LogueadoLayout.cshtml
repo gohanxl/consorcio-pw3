@@ -1,11 +1,10 @@
 ﻿@{
     Layout = "~/Views/Shared/_BaseLayout.cshtml";
-    ViewBag.Title = "";
+    ViewBag.Title = "Home";
 }
 
 @section Header {
-
-    <nav class="navbar navbar-expand-lg navbar-fixed-top primary-color">
+    <nav class="navbar navbar-expand-lg navbar-fixed-top navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="@Url.Action("Index", "Bienvenido")" id="loginLink">
                 <img class="main-logo" src="~/Assets/Pictures/logo.png" alt="logo-inicio" />
@@ -23,13 +22,8 @@
                             <span class="text-white">Mis Consorcios</span>
                         </a>
                     </li>
-                    <li class="nav-item active">
-                        <a href="@Url.Action("Index", "Gastos")" id="gastos" class="text-decoration-none">
-                            <span class="text-white">Mis Gastos</span>
-                        </a>
-                    </li>
                 </ul>
-                    <div class="my-1">
+                    <div class="my-2">
                         <span class="text-white">Bienvenido @HttpContext.Current.User.Identity.Name</span>
                         @Html.ActionLink("Cerrar sesion", "Logout", "Home", null, new { @class = "btn btn-danger text-white" })
                     </div>

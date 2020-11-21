@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsorcioPW3", "ConsorcioPW3\ConsorcioPW3.csproj", "{217CFDF3-01E0-4D35-A864-CD7D375386DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{E26A9AB2-AC43-4F94-821B-ACEFF1990F06}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{9759D2F4-C566-4A77-AC70-9B309C3B02AA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories", "Repositories\Repositories.csproj", "{E4CC8FF3-785C-4F79-B0B9-B00ADC017AF7}"
@@ -21,10 +19,6 @@ Global
 		{217CFDF3-01E0-4D35-A864-CD7D375386DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{217CFDF3-01E0-4D35-A864-CD7D375386DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{217CFDF3-01E0-4D35-A864-CD7D375386DD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E26A9AB2-AC43-4F94-821B-ACEFF1990F06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E26A9AB2-AC43-4F94-821B-ACEFF1990F06}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E26A9AB2-AC43-4F94-821B-ACEFF1990F06}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E26A9AB2-AC43-4F94-821B-ACEFF1990F06}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9759D2F4-C566-4A77-AC70-9B309C3B02AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9759D2F4-C566-4A77-AC70-9B309C3B02AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9759D2F4-C566-4A77-AC70-9B309C3B02AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
