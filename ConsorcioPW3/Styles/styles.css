@@ -11,6 +11,9 @@
     height: 100%;
     opacity: 0.9;
     z-index: -1;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .dark-primary {
@@ -44,10 +47,10 @@
 }
 
 .body-content {
-    display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 100px;
+    margin-bottom: 200px;
+    width: 100%;
 }
 
 .error-home {

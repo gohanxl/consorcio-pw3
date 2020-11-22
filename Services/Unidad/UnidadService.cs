@@ -12,5 +12,15 @@ namespace Services
         public UnidadService(ConsortiumContext context) : base(context)
         {
         }
+
+        public List<Unidad> GetAllByConsorcioId(int consorcioId)
+        {
+            return repo.GetAllByConsorcioId(consorcioId);
+        }
+
+        public int CountUnidadesByConsorcioId(int consorcioId)
+        {
+            return repo.CountUnidadesByConsorcioId(consorcioId);
+        }
     }
 }

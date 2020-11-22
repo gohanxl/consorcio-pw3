@@ -1,0 +1,55 @@
+﻿@model List<Repositories.Unidad>
+
+@{
+    Layout = "~/Views/Shared/_LogueadoLayout.cshtml";
+    ViewBag.Title = "Unidades";
+}
+
+<section class="bg-white rounded">
+    <p>
+        @Html.ActionLink("Nueva unidad", "Add", new { id = Model.First().IdConsorcio }, new { @class = "btn btn-primary m-2" })
+    </p>
+    <table id="table" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().ApellidoPropietario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().NombrePropietario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().EmailPropietario)
+                </th>
+                <th>
+                    Eliminar
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApellidoPropietario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombrePropietario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailPropietario)
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "Delete", new { id = item.IdUnidad }, new { @class = "fa fa-trash text-danger" })
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</section>

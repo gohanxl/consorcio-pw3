@@ -1,4 +1,6 @@
-﻿using Repositories;
+﻿using MvcSiteMapProvider;
+using MvcSiteMapProvider.Web.Mvc.Filters;
+using Repositories;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -65,10 +67,14 @@ namespace ConsorcioPW3.Controllers
             return RedirectToAction("Index");
         }
 
+        [SiteMapTitle("title")]
         public ActionResult Update(int id)
         {
             CargarListasEnViewBag();
             Consorcio consorcio = consorcioService.GetById(id);
+            int unidadesCount = unidadService.CountUnidadesByConsorcioId(id);
+            ViewData["Title"] = consorcio.Nombre;
+            ViewBag.UnidadesCount = unidadesCount;
             return View(consorcio);
         }
 

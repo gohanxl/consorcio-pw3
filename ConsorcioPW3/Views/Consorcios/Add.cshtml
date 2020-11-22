@@ -11,6 +11,8 @@
         Text = o.Nombre,
         Value = o.IdProvincia.ToString()
     }).ToList();
+
+    provinciasItems.Insert(0, new SelectListItem() { Value = "", Text = "Seleccione Provincia" });
 }
 
 <section class="container bg-white rounded mb-3 p-3">
@@ -73,7 +75,6 @@
                 <div class="mx-3">
                     <input type="submit" value="Crear" class="btn btn-primary" />
                 </div>
-
                 <div class="mx-3">
                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-primary" })
                 </div>

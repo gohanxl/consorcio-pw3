@@ -12,5 +12,22 @@ namespace Repositories
         public UnidadRepository(ConsortiumContext context) : base(context)
         {
         }
+
+        public List<Unidad> GetAllByConsorcioId(int consorcioId)
+        {
+            List<Unidad> unidades = ctx.Unidad
+                .Where(u => u.IdConsorcio == consorcioId)
+                .OrderBy(u => u.Nombre)
+                .ToList();
+            return unidades;
+        }
+
+        public int CountUnidadesByConsorcioId(int consorcioId)
+        {
+            int count = ctx.Unidad
+                .Where(u => u.IdConsorcio == consorcioId)
+                .Count();
+            return count;
+        }
     }
 }
