@@ -1,4 +1,5 @@
-﻿using MvcSiteMapProvider;
+﻿using ConsorcioPW3.Helpers;
+using MvcSiteMapProvider;
 using MvcSiteMapProvider.Web.Mvc.Filters;
 using Repositories;
 using Services;
@@ -42,14 +43,27 @@ namespace ConsorcioPW3.Controllers
         }
 
         [HttpPost]
+        [MultipleButton(Name = "action", Argument = "save")]
         public ActionResult Add(Consorcio consorcio)
         {
-            string email = this.User.Identity.Name;
-            Usuario usuario = usuarioService.GetByEmail(email);
-            consorcio.FechaCreacion = DateTime.Now;
-            consorcio.IdUsuarioCreador = usuario.IdUsuario;
-            consorcioService.Insert(consorcio);
+            InsertConsorcio(consorcio);
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "consorcio")]
+        public ActionResult AddAndCreateConsorcio(Consorcio consorcio)
+        {
+            InsertConsorcio(consorcio);
+            return RedirectToAction("Add");
+        }
+
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "unidades")]
+        public ActionResult AddAndCreateUnidades(Consorcio consorcio)
+        {
+            InsertConsorcio(consorcio);
+            return RedirectToAction("Add", "Unidades", new { id = consorcio.IdConsorcio });
         }
 
         [HttpGet]
@@ -83,6 +97,15 @@ namespace ConsorcioPW3.Controllers
         {
             consorcioService.Update(consorcio);
             return RedirectToAction("Index");
+        }
+
+        private void InsertConsorcio(Consorcio consorcio)
+        {
+            string email = this.User.Identity.Name;
+            Usuario usuario = usuarioService.GetByEmail(email);
+            consorcio.FechaCreacion = DateTime.Now;
+            consorcio.IdUsuarioCreador = usuario.IdUsuario;
+            consorcioService.Insert(consorcio);
         }
 
         private void CargarListasEnViewBag()

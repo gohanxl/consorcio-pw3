@@ -8,12 +8,12 @@
 			<mvcSiteMapNode title="Nuevo Consorcio" controller="Consorcios" action="Add" />
 			<mvcSiteMapNode title="Consorcio" controller="Consorcios" action="Update" preservedRouteParameters="id">
 				<mvcSiteMapNode title="Unidades" controller="Unidades" action="Index">
-					<mvcSiteMapNode title="Nueva Unidad" controller="Unidades" action="Add" />
-					<mvcSiteMapNode title="Editando Unidad" controller="Unidades" action="Update" />
+					<mvcSiteMapNode title="Nueva Unidad" controller="Unidades" action="Add" preservedRouteParameters="id" />
+					<mvcSiteMapNode title="Editando Unidad" controller="Unidades" action="Update" preservedRouteParameters="id" />
 				</mvcSiteMapNode>
 				<mvcSiteMapNode title="Gastos" controller="Gastos" action="Index">
 					<mvcSiteMapNode title="Nuevo Gasto" controller="Gastos" action="Add" />
-					<mvcSiteMapNode title="Editando Gasto" controller="Gastos" action="Update" />
+					<mvcSiteMapNode title="Editando Gasto" controller="Gastos" action="Update" preservedRouteParameters="id" />
 				</mvcSiteMapNode>
 				<mvcSiteMapNode title="Expensas" controller="Expensas" action="Index" />
 			</mvcSiteMapNode>

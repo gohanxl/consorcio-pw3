@@ -1,5 +1,6 @@
 ﻿using Repositories;
 using Services;
+using ConsorcioPW3.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,26 +27,34 @@ namespace ConsorcioPW3.Controllers
         public ActionResult Index(int consorcioId)
         {
             List<Unidad> unidades = unidadService.GetAllByConsorcioId(consorcioId);
+            SitemapHelper.SetConsorcioBreadcrumbTitle(unidades.First().Consorcio.Nombre);
             return View(unidades);
         }
 
         public ActionResult Add(int id)
         {
             Consorcio consorcio = consorcioService.GetById(id);
+            SitemapHelper.SetConsorcioBreadcrumbTitle(consorcio.Nombre);
             ViewBag.Consorcio = consorcio;
             return View();
         }
 
 
         [HttpPost]
+        [MultipleButton(Name = "action", Argument = "save")]
         public ActionResult Add(Unidad unidad)
         {
-            string email = this.User.Identity.Name;
-            Usuario usuario = usuarioService.GetByEmail(email);
-            unidad.FechaCreacion = DateTime.Now;
-            unidad.IdUsuarioCreador = usuario.IdUsuario;
-            unidadService.Insert(unidad);
+            InsertUnidad(unidad);
             return RedirectToAction("Index", new { consorcioId = unidad.IdConsorcio });
+        }
+
+        [HttpPost]
+
+        [MultipleButton(Name = "action", Argument = "unidad")]
+        public ActionResult AddAndCreate(Unidad unidad)
+        {
+            InsertUnidad(unidad);
+            return RedirectToAction("Add", new { id = unidad.IdConsorcio });
         }
 
         [HttpGet]
@@ -57,10 +66,32 @@ namespace ConsorcioPW3.Controllers
 
         [HttpPost]
         [ActionName("Delete")]
-        public ActionResult DeletePost(int id)
+        public ActionResult DeletePost(FormCollection form)
         {
-            unidadService.Delete(id);
-            return RedirectToAction("Index");
+            unidadService.Delete(int.Parse(form["IdUnidad"]));
+            return RedirectToAction("Index", new { consorcioId = int.Parse(form["IdConsorcio"])});
+        }
+
+        public ActionResult Update(int id)
+        {
+            Unidad unidad = unidadService.GetById(id);
+            return View(unidad);
+        }
+
+        [HttpPost]
+        public ActionResult Update(Unidad unidad)
+        {
+            unidadService.Update(unidad);
+            return RedirectToAction("Index", new { idConsorcio = unidad.IdConsorcio });
+        }
+
+        private void InsertUnidad(Unidad unidad)
+        {
+            string email = this.User.Identity.Name;
+            Usuario usuario = usuarioService.GetByEmail(email);
+            unidad.FechaCreacion = DateTime.Now;
+            unidad.IdUsuarioCreador = usuario.IdUsuario;
+            unidadService.Insert(unidad);
         }
     }
 }

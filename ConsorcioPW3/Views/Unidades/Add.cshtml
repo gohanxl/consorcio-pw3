@@ -24,6 +24,7 @@
                 <div class="col-md-10">
                     @Html.DropDownList("IdConsorcio", consorcioItems, htmlAttributes: new { @class = "form-control", @disabled="disabled" })
                     @Html.ValidationMessageFor(model => model.IdConsorcio, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.IdConsorcio, new { Value = consorcio.IdConsorcio })
                 </div>
             </div>
 
@@ -69,7 +70,10 @@
 
             <div class="form-inline">
                 <div class="mx-3">
-                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <input type="submit" value="Guardar" name="action:save" class="btn btn-primary" />
+                </div>
+                <div class="mx-3">
+                    <input type="submit" value="Guardar y crear otra unidad" name="action:unidad" class="btn btn-primary" />
                 </div>
                 <div class="mx-3">
                     @Html.ActionLink("Cancelar", "Index", new { consorcioId = consorcio.IdConsorcio }, new { @class = "btn btn-danger" })

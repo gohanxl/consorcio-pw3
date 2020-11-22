@@ -138,6 +138,8 @@
     <Compile Include="Usuario.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Validations\UnidadMetadata.cs" />
+    <Compile Include="Validations\Unidad.cs" />
     <Compile Include="Validations\Consorcio.cs" />
     <Compile Include="Validations\ConsorcioMetadata.cs" />
     <Compile Include="Validations\Gasto.cs" />
