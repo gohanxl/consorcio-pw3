@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="BaseService.cs" />
     <Compile Include="Consorcio\ConsorcioService.cs" />
+    <Compile Include="Expensa\ExpensaService.cs" />
     <Compile Include="Gasto\TipoGastoService.cs" />
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

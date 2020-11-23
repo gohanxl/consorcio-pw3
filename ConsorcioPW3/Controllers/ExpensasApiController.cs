@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Repositories;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,10 +11,23 @@ namespace ConsorcioPW3.Controllers
 {
     public class ExpensasApiController : ApiController
     {
-        [HttpGet]
-        public string Get()
+        ConsortiumContext entities;
+        GastoService gastoService;
+        UnidadService unidadService;
+
+
+        public ExpensasApiController()
         {
-            return "test value";
+            entities = new ConsortiumContext();
+            gastoService = new GastoService(entities);
+            unidadService = new UnidadService(entities);
+        }
+
+        [HttpGet]
+        public IHttpActionResult Get(int id)
+        {
+            List<ExpensaDTO> expensas = gastoService.GetExpensasById(id);
+            return Json(expensas);
         }
     }
 }

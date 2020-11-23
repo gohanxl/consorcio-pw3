@@ -14,7 +14,7 @@ namespace ConsorcioPW3.App_Start
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{equipo}",
+                routeTemplate: "api/{controller}/{id}",
                 defaults: new { equipo = RouteParameter.Optional }
             );
 

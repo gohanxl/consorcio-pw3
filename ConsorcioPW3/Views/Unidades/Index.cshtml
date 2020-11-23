@@ -3,11 +3,12 @@
 @{
     Layout = "~/Views/Shared/_LogueadoLayout.cshtml";
     ViewBag.Title = "Unidades";
+    int consorcioId = ViewBag.ConsorcioId;
 }
 
 <section class="bg-white rounded">
     <p>
-        @Html.ActionLink("Nueva unidad", "Add", new { id = Model.First().IdConsorcio }, new { @class = "btn btn-primary m-2" })
+        @Html.ActionLink("Nueva unidad", "Add", new { id = consorcioId }, new { @class = "btn btn-primary m-2" })
     </p>
     <table id="table" class="table table-striped table-bordered">
         <thead>

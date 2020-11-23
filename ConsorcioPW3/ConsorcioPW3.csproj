@@ -278,6 +278,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BienvenidoController.cs" />
     <Compile Include="Controllers\ConsorciosController.cs" />
+    <Compile Include="Controllers\ExpensasController.cs" />
     <Compile Include="Controllers\GastosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TipoGastoController.cs" />
@@ -352,6 +353,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Assets\Gastos\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Expensas\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Repositories\Repositories.csproj">

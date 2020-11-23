@@ -9,7 +9,9 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(Model => Model.IdUsuarioCreador)
+        @Html.HiddenFor(model => model.IdUnidad)
+        @Html.HiddenFor(model => model.IdUsuarioCreador)
+        @Html.HiddenFor(model => model.FechaCreacion)
         <div class="form-horizontal">
             <h4>Unidad</h4>
             <hr />
@@ -17,7 +19,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.IdConsorcio, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Consorcio.Nombre, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } } )
+                    @Html.EditorFor(model => model.Consorcio.Nombre, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
                     @Html.ValidationMessageFor(model => model.Consorcio.Nombre, "", new { @class = "text-danger" })
                     @Html.HiddenFor(model => model.IdConsorcio)
                 </div>
@@ -67,7 +69,9 @@
                 <div class="mx-3">
                     <input type="submit" value="Guardar" class="btn btn-primary" />
                 </div>
-
+                <div class="mx-3">
+                    @Html.ActionLink("Eliminar", "Delete", new { id = Model.IdUnidad }, new { @class = "btn btn-danger" })
+                </div>
                 <div class="mx-3">
                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })
                 </div>

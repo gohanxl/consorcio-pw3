@@ -12,5 +12,15 @@ namespace Services
         public GastoService(ConsortiumContext context) : base(context)
         {
         }
+
+        public decimal GetGastosTotalCurrentMonthByConsorcio(int consorcioId)
+        {
+            return repo.GetGastosTotalCurrentMonthByConsorcio(consorcioId);
+        }
+
+        public List<ExpensaDTO> GetExpensasById(int consorcioId)
+        {
+            return repo.GetExpensasById(consorcioId);
+        }
     }
 }
