@@ -20,7 +20,7 @@ namespace Services
         public async Task<List<ExpensaDTO>> GetExpensasByConsorioIdAsync(int consorioId)
         {
             string url = "https://localhost:44342/";
-            List<ExpensaDTO> expenas = new List<ExpensaDTO>();
+            List<ExpensaDTO> expensas = new List<ExpensaDTO>();
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(url);
@@ -31,9 +31,9 @@ namespace Services
                 if (response.IsSuccessStatusCode)
                 {
                     var expensasResponse = response.Content.ReadAsStringAsync().Result;
-                    expenas = JsonConvert.DeserializeObject<List<ExpensaDTO>>(expensasResponse);
+                    expensas = JsonConvert.DeserializeObject<List<ExpensaDTO>>(expensasResponse);
                 }
-                return expenas;
+                return expensas;
             }
         }
     }
