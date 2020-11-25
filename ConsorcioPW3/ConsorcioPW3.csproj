@@ -288,6 +288,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\MultipleButtonAttribute.cs" />
+    <Compile Include="Helpers\PushNotifications.cs" />
     <Compile Include="Helpers\SitemapHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -342,6 +343,7 @@
     <Content Include="Views\Gastos\Delete.cshtml" />
     <Content Include="Views\Gastos\Add.cshtml" />
     <Content Include="Views\Gastos\Update.cshtml" />
+    <Content Include="Views\Shared\_pv_Notifications.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
