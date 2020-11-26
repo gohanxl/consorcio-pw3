@@ -18,9 +18,9 @@ namespace ConsorcioPW3.Controllers
             expensasService = new ExpensaService();
         }
 
-        public async Task<ActionResult> Index(int id)
+        public async Task<ActionResult> Index(int consorcioId)
         {
-            List<ExpensaDTO> expensas = await expensasService.GetExpensasByConsorioIdAsync(id);
+            List<ExpensaDTO> expensas = await expensasService.GetExpensasByConsorcioIdAsync(consorcioId);
             return View(expensas);
         }
     }

@@ -28,7 +28,7 @@ namespace ConsorcioPW3.Controllers
         {
             Consorcio consorcio = consorcioService.GetById(consorcioId);
             List<Unidad> unidades = unidadService.GetAllByConsorcioId(consorcioId);
-            SitemapHelper.SetConsorcioBreadcrumbTitle(consorcio.Nombre  );
+            SitemapHelper.SetConsorcioBreadcrumbTitle(consorcio.Nombre);
             ViewBag.ConsorcioId = consorcioId;
             return View(unidades);
         }
@@ -71,7 +71,7 @@ namespace ConsorcioPW3.Controllers
         public ActionResult DeletePost(FormCollection form)
         {
             unidadService.Delete(int.Parse(form["IdUnidad"]));
-            return RedirectToAction("Index", new { consorcioId = int.Parse(form["IdConsorcio"])});
+            return RedirectToAction("Index", new { consorcioId = int.Parse(form["IdConsorcio"]) });
         }
 
         public ActionResult Update(int id)
@@ -89,11 +89,19 @@ namespace ConsorcioPW3.Controllers
 
         private void InsertUnidad(Unidad unidad)
         {
-            string email = this.User.Identity.Name;
-            Usuario usuario = usuarioService.GetByEmail(email);
-            unidad.FechaCreacion = DateTime.Now;
-            unidad.IdUsuarioCreador = usuario.IdUsuario;
-            unidadService.Insert(unidad);
+            try
+            {
+                string email = this.User.Identity.Name;
+                Usuario usuario = usuarioService.GetByEmail(email);
+                unidad.FechaCreacion = DateTime.Now;
+                unidad.IdUsuarioCreador = usuario.IdUsuario;
+                unidadService.Insert(unidad);
+                this.AddNotification($"Unidad {unidad.Nombre} creada con exito!", NotificationType.SUCCESS);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine("Error while trying to InsertUnidad", exception);
+            }
         }
     }
 }
