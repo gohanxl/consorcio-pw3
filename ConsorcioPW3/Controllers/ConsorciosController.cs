@@ -6,6 +6,7 @@ using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -102,10 +103,19 @@ namespace ConsorcioPW3.Controllers
 
         private void InsertConsorcio(Consorcio consorcio)
         {
-            Usuario user = GetUser();
-            consorcio.FechaCreacion = DateTime.Now;
-            consorcio.IdUsuarioCreador = user.IdUsuario;
-            consorcioService.Insert(consorcio);
+            try
+            {
+                
+                Usuario user = GetUser();
+                consorcio.FechaCreacion = DateTime.Now;
+                consorcio.IdUsuarioCreador = user.IdUsuario;
+                consorcioService.Insert(consorcio);
+                this.AddNotification($"Consorcio {consorcio.Nombre} creado con exito!", NotificationType.SUCCESS);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine("Error while trying to InsertConsorcio", exception);
+            }
         }
 
         private void CargarListasEnViewBag()

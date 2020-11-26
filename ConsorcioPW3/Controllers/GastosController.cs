@@ -1,4 +1,5 @@
-﻿using Repositories;
+﻿using ConsorcioPW3.Helpers;
+using Repositories;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -50,6 +51,8 @@ namespace ConsorcioPW3.Controllers
             string path = GuardarArchivo(file);
             gasto.ArchivoComprobante = path;
             gastoService.Insert(gasto);
+
+            this.AddNotification($"Gasto {gasto.Nombre} creado con exito!", NotificationType.SUCCESS);
             return RedirectToAction("Index");
         }
 
