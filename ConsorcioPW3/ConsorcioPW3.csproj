@@ -278,6 +278,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BienvenidoController.cs" />
     <Compile Include="Controllers\ConsorciosController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ExpensasController.cs" />
     <Compile Include="Controllers\GastosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -343,6 +344,7 @@
     <Content Include="Views\Gastos\Add.cshtml" />
     <Content Include="Views\Gastos\Update.cshtml" />
     <Content Include="Views\Expensas\Index.cshtml" />
+    <Content Include="Views\Error\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
