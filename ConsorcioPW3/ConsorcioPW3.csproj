@@ -342,6 +342,7 @@
     <Content Include="Views\Gastos\Delete.cshtml" />
     <Content Include="Views\Gastos\Add.cshtml" />
     <Content Include="Views\Gastos\Update.cshtml" />
+    <Content Include="Views\Expensas\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -353,7 +354,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Assets\Gastos\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Expensas\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Repositories\Repositories.csproj">
