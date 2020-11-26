@@ -72,8 +72,16 @@ namespace ConsorcioPW3.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            gastoService.Delete(id);
-            return Redirect("/Gastos/Index");
+            Gasto gasto = gastoService.GetById(id);
+            return View(gasto);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public ActionResult DeletePost(FormCollection form)
+        {
+            gastoService.Delete(int.Parse(form["IdGasto"]));
+            return RedirectToAction("Index", new { consorcioId = int.Parse(form["IdConsorcio"]) });
         }
 
         [HttpGet]
@@ -90,7 +98,7 @@ namespace ConsorcioPW3.Controllers
             string path = GuardarArchivo(file);
             gasto.ArchivoComprobante = path;
             gastoService.Update(gasto);
-            return RedirectToAction("Gastos/Index");
+            return RedirectToAction("Index", new { consorcioId = gasto.IdConsorcio });
         }
 
         private string GetAndSaveFile() {
