@@ -44,19 +44,19 @@ namespace ConsorcioPW3.Controllers
             gasto.IdUsuarioCreador = usuario.IdUsuario;
             if (file == null && file.ContentLength == 0)
             {
-                //No hay archivo
+                //No hay archivo error
                 return Redirect("");
             }
             string path = GuardarArchivo(file);
             gasto.ArchivoComprobante = path;
             gastoService.Insert(gasto);
-            return Redirect("/Gastos/Index");
+            return RedirectToAction("Index");
         }
 
         public ActionResult Delete(int id)
         {
             gastoService.Delete(id);
-            return Redirect("/Gastos/Index");
+            return RedirectToAction("Index");
         }
 
         public ActionResult Update(int id)

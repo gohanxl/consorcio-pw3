@@ -14,9 +14,11 @@ namespace Repositories
         {
         }
 
-        override public List<Consorcio> GetAll()
+        public List<Consorcio> GetAllByUser(int userId)
         {
-            return ctx.Consorcio.OrderBy(c => c.Nombre).ToList();
+            return ctx.Consorcio
+                .Where(c => c.IdUsuarioCreador == userId)
+                .OrderBy(c => c.Nombre).ToList();
         }
 
         public override void Update(Consorcio obj)

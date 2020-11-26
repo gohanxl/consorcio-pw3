@@ -32,7 +32,8 @@ namespace ConsorcioPW3.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            List<Consorcio> consorcios = consorcioService.GetAll();
+            Usuario user = GetUser();
+            List<Consorcio> consorcios = consorcioService.GetAllByUser(user.IdUsuario);
             return View(consorcios);
         }
 
@@ -101,16 +102,22 @@ namespace ConsorcioPW3.Controllers
 
         private void InsertConsorcio(Consorcio consorcio)
         {
-            string email = this.User.Identity.Name;
-            Usuario usuario = usuarioService.GetByEmail(email);
+            Usuario user = GetUser();
             consorcio.FechaCreacion = DateTime.Now;
-            consorcio.IdUsuarioCreador = usuario.IdUsuario;
+            consorcio.IdUsuarioCreador = user.IdUsuario;
             consorcioService.Insert(consorcio);
         }
 
         private void CargarListasEnViewBag()
         {
             CargarProvinciasEnViewBag();
+        }
+
+        private Usuario GetUser()
+        {
+            string email = this.User.Identity.Name;
+            Usuario user = usuarioService.GetByEmail(email);
+            return user;
         }
 
         private void CargarProvinciasEnViewBag()
