@@ -13,14 +13,12 @@ namespace ConsorcioPW3.Controllers
     {
         ConsortiumContext entities;
         GastoService gastoService;
-        UnidadService unidadService;
 
 
         public ExpensasApiController()
         {
             entities = new ConsortiumContext();
             gastoService = new GastoService(entities);
-            unidadService = new UnidadService(entities);
         }
 
         [HttpGet]
