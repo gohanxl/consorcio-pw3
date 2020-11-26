@@ -74,7 +74,7 @@ namespace ConsorcioPW3.Controllers
             string path = GuardarArchivo(file);
             gasto.ArchivoComprobante = path;
             gastoService.Update(gasto);
-            return Redirect("/Gastos/Index");
+            return RedirectToAction("Index");
         }
 
         private void CargarListasEnViewBag()

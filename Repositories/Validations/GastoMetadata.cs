@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -36,6 +37,7 @@ namespace Repositories
         [Required(ErrorMessage = "El {0} es obligatorio")]
         public decimal Monto { get; set; }
 
+        [DisplayName("Fecha de creación")]
         [Required(ErrorMessage = "La fecha de creacion es obligatorio")]
         public DateTime FechaCreacion { get; set; }
     

@@ -1,0 +1,52 @@
+﻿@model List<Repositories.ExpensaDTO>
+
+@{
+    Layout = "~/Views/Shared/_LogueadoLayout.cshtml";
+    ViewBag.Title = "Consorcios";
+}
+
+<section class="bg-white rounded">
+    <p>
+        @Html.ActionLink("Crear nuevo consorcio", "Add", null, new { @class = "btn btn-primary m-2" })
+    </p>
+    <table id="table" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().AnioExpensa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().MesExpensa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().GastoTotal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().ExpensasPorUnidad)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AnioExpensa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MesExpensa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GastoTotal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ExpensasPorUnidad)
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</section>
+
