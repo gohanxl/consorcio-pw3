@@ -51,25 +51,13 @@ namespace ConsorcioPW3.Controllers
         [HttpPost]
         [MultipleButton(Name = "action", Argument = "save")]
         public ActionResult Add(Gasto gasto)
-        {
-            string email = this.User.Identity.Name;
-            Usuario usuario = usuarioService.GetByEmail(email);
-            gasto.FechaCreacion = DateTime.Now;
-            gasto.IdUsuarioCreador = usuario.IdUsuario;
-            if (file == null && file.ContentLength == 0)
-            {
-                //No hay archivo
-                return Redirect("");
-            }
-            string path = GuardarArchivo(file);
-            gasto.ArchivoComprobante = path;
-            gastoService.Insert(gasto);
-            return Redirect("/Gastos/Index");
+        {            
             string path = GetAndSaveFile();
             
             InsertGasto(gasto, path);
 			this.AddNotification($"Gasto {gasto.Nombre} creado con exito!", NotificationType.SUCCESS);
-            return RedirectToAction("Index", new { consorcioId = gasto.IdConsorcio });        }
+            return RedirectToAction("Index", new { consorcioId = gasto.IdConsorcio });
+        }
 
         [HttpPost]
         [MultipleButton(Name = "action", Argument = "gasto")]
