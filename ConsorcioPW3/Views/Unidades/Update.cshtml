@@ -75,7 +75,7 @@
                     @Html.ActionLink("Eliminar", "Delete", new { id = Model.IdUnidad }, new { @class = "btn btn-danger" })
                 </div>
                 <div class="mx-3">
-                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Cancelar", "Index", new { consorcioId = Model.IdConsorcio }, new { @class = "btn btn-danger" })
                 </div>
             </div>
         </div>

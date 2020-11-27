@@ -67,7 +67,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.FechaGasto, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.FechaGasto, "{0:dd/MM/yyyy}", new { @class = "datefield form-control", @placeholder = "Enter start date..." })
+                    @Html.TextBoxFor(model => model.FechaGasto, "{0:yyyy-MM-dd}", new { @class = "datefield form-control", @placeholder = "Enter start date..." })
                     @Html.ValidationMessageFor(model => model.FechaGasto, "", new { @class = "text-danger" })
                 </div>
             </div>

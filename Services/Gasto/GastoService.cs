@@ -22,5 +22,15 @@ namespace Services
         {
             return repo.GetExpensasById(consorcioId);
         }
+
+        public string GetComprobanteAbsolutePath(string relativePath) 
+        {
+            return repo.GetComprobanteAbsolutePath(relativePath);
+        }
+
+        public string GetComprobanteFileName(string relativePath)
+        {
+            return repo.GetComprobanteFileName(relativePath);
+        }
     }
 }
