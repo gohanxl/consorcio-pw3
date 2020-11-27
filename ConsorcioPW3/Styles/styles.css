@@ -205,7 +205,6 @@ footer {
 
 .ui-datepicker th {
     text-align: center;
-    padding: 5px;
     color: #b7b7b7;
     font-size: 9px;
     text-transform: uppercase;
@@ -223,7 +222,7 @@ footer {
     }
 
 td .ui-state-default {
-    width: 100%;
+    width: 42px;
     display: inline-block;
     border: none;
     text-align: center;
