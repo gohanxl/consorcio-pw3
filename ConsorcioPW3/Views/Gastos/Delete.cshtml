@@ -1,112 +1,23 @@
 ﻿@model Repositories.Gasto
 
 @{
-    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LogueadoLayout.cshtml";
+    ViewBag.Title = "Eliminar gasto";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Gasto</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaGasto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaGasto)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AnioExpensa)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AnioExpensa)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MesExpensa)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MesExpensa)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ArchivoComprobante)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ArchivoComprobante)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Monto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Monto)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaCreacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaCreacion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Consorcio.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Consorcio.Nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TipoGasto.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TipoGasto.Nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Usuario.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Usuario.Email)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
+<section class="container bg-white rounded mb-3 p-3">
+    <h3>
+        Estas seguro que deseas eliminar la unidad @Html.DisplayFor(model => model.Nombre)
+        del consorcio @Html.DisplayFor(model => model.Consorcio.Nombre)?
+    </h3>
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
-
+        @Html.HiddenFor(u => u.IdGasto)
+        @Html.HiddenFor(u => u.IdConsorcio)
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+            @Html.ActionLink("Cancelar", "Index", new { consorcioId = Model.IdConsorcio }, new { @class = "btn btn-secondary" })
         </div>
     }
-</div>
+</section>

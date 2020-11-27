@@ -12,7 +12,7 @@
 					<mvcSiteMapNode title="Editando Unidad" controller="Unidades" action="Update" preservedRouteParameters="id" />
 				</mvcSiteMapNode>
 				<mvcSiteMapNode title="Gastos" controller="Gastos" action="Index">
-					<mvcSiteMapNode title="Nuevo Gasto" controller="Gastos" action="Add" />
+					<mvcSiteMapNode title="Nuevo Gasto" controller="Gastos" action="Add" preservedRouteParameters="id" />
 					<mvcSiteMapNode title="Editando Gasto" controller="Gastos" action="Update" preservedRouteParameters="id" />
 				</mvcSiteMapNode>
 				<mvcSiteMapNode title="Expensas" controller="Expensas" action="Index" />
