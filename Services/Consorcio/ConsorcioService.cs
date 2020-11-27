@@ -13,5 +13,10 @@ namespace Services
         public ConsorcioService(ConsortiumContext context) : base(context)
         { 
         }
+
+        public List<Consorcio> GetAllByUser(int userId)
+        {
+            return repo.GetAllByUser(userId);
+        }
     }
 }
