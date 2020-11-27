@@ -84,18 +84,21 @@ namespace ConsorcioPW3.Controllers
             return RedirectToAction("Index", new { consorcioId = int.Parse(form["IdConsorcio"]) });
         }
 
-        [HttpGet]
         public ActionResult Update(int id)
         {
-            CargarListasEnViewBag();
             Gasto gasto = gastoService.GetById(id);
+            Consorcio consorcio = gasto.Consorcio;
+            SitemapHelper.SetConsorcioBreadcrumbTitle(consorcio.Nombre);
+            CargarListasEnViewBag();
+            ViewBag.Consorcio = consorcio;
+
             return View(gasto);
         }
 
         [HttpPost]
-        public ActionResult Update(Gasto gasto, HttpPostedFileBase file)
+        public ActionResult Update(Gasto gasto)
         {
-            string path = GuardarArchivo(file);
+            string path = GetAndSaveFile();
             gasto.ArchivoComprobante = path;
             gastoService.Update(gasto);
             return RedirectToAction("Index", new { consorcioId = gasto.IdConsorcio });

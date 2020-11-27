@@ -24,7 +24,6 @@
     @using (Html.BeginForm("Crear", "Gastos", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
-
         <div class="form-horizontal">
             <h4>Nuevo Gasto</h4>
             <hr />
