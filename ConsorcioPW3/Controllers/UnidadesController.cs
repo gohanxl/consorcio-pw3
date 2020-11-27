@@ -76,6 +76,8 @@ namespace ConsorcioPW3.Controllers
 
         public ActionResult Update(int id)
         {
+            Consorcio consorcio = consorcioService.GetById(id);
+            ViewBag.Consorcio = consorcio;
             Unidad unidad = unidadService.GetById(id);
             return View(unidad);
         }
