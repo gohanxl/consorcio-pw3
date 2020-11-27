@@ -17,10 +17,10 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(Model => Model.IdConsorcio)
-        @Html.HiddenFor(Model => Model.IdUsuarioCreador)
+        @Html.HiddenFor(model => model.IdConsorcio)
+        @Html.HiddenFor(model => model.IdUsuarioCreador)
         <div class="form-horizontal">
-            <h4>Consorcio</h4>
+            <h4>Consorcio @Model.Nombre - Editando</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
