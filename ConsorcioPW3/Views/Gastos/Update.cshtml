@@ -24,11 +24,11 @@
     @using (Html.BeginForm("Update", "Gastos", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(Model => Model.IdGasto)
-        @Html.HiddenFor(Model => Model.IdUsuarioCreador)
-        @Html.HiddenFor(Model => Model.FechaCreacion)
+        @Html.HiddenFor(model => model.IdGasto)
+        @Html.HiddenFor(model => model.IdUsuarioCreador)
+        @Html.HiddenFor(model => model.FechaCreacion)
         <div class="form-horizontal">
-            <h4>Nuevo Gasto</h4>
+            <h4>@consorcio.Nombre - Editando Gasto "@Model.Nombre"</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
@@ -67,7 +67,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.FechaGasto, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(Model => Model.FechaGasto, "{0:dd/MM/yyyy}", new { @class = "datefield form-control", @placeholder = "Enter start date..." })
+                    @Html.TextBoxFor(model => model.FechaGasto, "{0:dd/MM/yyyy}", new { @class = "datefield form-control", @placeholder = "Enter start date..." })
                     @Html.ValidationMessageFor(model => model.FechaGasto, "", new { @class = "text-danger" })
                 </div>
             </div>
