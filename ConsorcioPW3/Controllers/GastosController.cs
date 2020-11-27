@@ -69,21 +69,6 @@ namespace ConsorcioPW3.Controllers
             return RedirectToAction("Add", new { id = gasto.IdConsorcio });
         }
 
-        [HttpGet]
-        public ActionResult Delete(int id)
-        {
-            Gasto gasto = gastoService.GetById(id);
-            return View(gasto);
-        }
-
-        [HttpPost]
-        [ActionName("Delete")]
-        public ActionResult DeletePost(FormCollection form)
-        {
-            gastoService.Delete(int.Parse(form["IdGasto"]));
-            return RedirectToAction("Index", new { consorcioId = int.Parse(form["IdConsorcio"]) });
-        }
-
         public ActionResult Update(int id)
         {
             Gasto gasto = gastoService.GetById(id);
@@ -102,6 +87,30 @@ namespace ConsorcioPW3.Controllers
             gasto.ArchivoComprobante = path;
             gastoService.Update(gasto);
             return RedirectToAction("Index", new { consorcioId = gasto.IdConsorcio });
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            Gasto gasto = gastoService.GetById(id);
+            return View(gasto);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public ActionResult DeletePost(FormCollection form)
+        {
+            gastoService.Delete(int.Parse(form["IdGasto"]));
+            return RedirectToAction("Index", new { consorcioId = int.Parse(form["IdConsorcio"]) });
+        }
+
+        [HttpGet]
+        public ActionResult Download(string filePath)
+        {
+            byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+            String[] splitedPath = filePath.Split('\\');
+            string fileName = splitedPath.Last();
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
 
         private string GetAndSaveFile() {
