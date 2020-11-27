@@ -62,7 +62,7 @@
                     @Html.DisplayFor(modelItem => item.Monto)
                 </td>
                 <td>
-                    @Html.ActionLink("Descargar comprobante", "Download", new { filePath = item.ArchivoComprobante })                    
+                    @Html.ActionLink("Descargar comprobante", "Download", new { id = item.IdGasto })                    
                 </td>                
                 <td>
                     @Html.ActionLink(" ", "Delete", new { id = item.IdGasto }, new { @class = "fa fa-trash text-danger" })

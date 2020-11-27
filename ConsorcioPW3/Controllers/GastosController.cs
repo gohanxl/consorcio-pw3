@@ -105,31 +105,35 @@ namespace ConsorcioPW3.Controllers
         }
 
         [HttpGet]
-        public ActionResult Download(string filePath)
+        public ActionResult Download(int id)
         {
-            byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
-            String[] splitedPath = filePath.Split('\\');
-            string fileName = splitedPath.Last();
-            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
-        }
+            Gasto gasto = gastoService.GetById(id);
 
-        private string GetAndSaveFile() {
-            string path = "";
-            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
-            {
-                path = GuardarArchivo(Request.Files[0]);
+            string absolutePath = gastoService.GetComprobanteAbsolutePath(gasto.ArchivoComprobante);
+            string fileName = gastoService.GetComprobanteFileName(gasto.ArchivoComprobante);
+            byte[] fileBytes = null;
+
+            try {
+                fileBytes = System.IO.File.ReadAllBytes(absolutePath);
+            } 
+            catch (Exception e) {
+                this.AddNotification($"Comprobante no encontrado", NotificationType.ERROR);
+                return RedirectToAction("Index", new { consorcioId = gasto.IdConsorcio });
             }
-
-            return path;
+            
+            
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
 
         private void InsertGasto(Gasto gasto, string pathArchivo)
         {
             string email = this.User.Identity.Name;
             Usuario usuario = usuarioService.GetByEmail(email);
+
             gasto.FechaCreacion = DateTime.Now;
             gasto.ArchivoComprobante = pathArchivo;
             gasto.IdUsuarioCreador = usuario.IdUsuario;
+
             gastoService.Insert(gasto);
         }
 
@@ -144,12 +148,27 @@ namespace ConsorcioPW3.Controllers
             ViewBag.TipoGastos = tipoGastos;
         }
 
+        private string GetAndSaveFile()
+        {
+            string path = "";
+            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
+            {
+                path = GuardarArchivo(Request.Files[0]);
+            }
+
+            return path;
+        }
+
         private string GuardarArchivo(HttpPostedFileBase file)
         {
-            var fileName = Path.GetFileName(file.FileName);
-            var path = Path.Combine(Server.MapPath("~/Assets/Gastos/"), fileName);
-            file.SaveAs(path);
-            return path;
+            string fileName = Path.GetFileName(file.FileName);
+
+            string absolutePath = Path.Combine(Server.MapPath("~/Assets/Gastos/"), fileName);
+            string relativePath = "/Gastos/" + fileName;
+
+            file.SaveAs(absolutePath);
+
+            return relativePath;
         }
     }
 }

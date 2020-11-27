@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
+using System.IO;
 using System.Linq;
+using System.Web;
 
 namespace Repositories
 {
@@ -44,6 +46,21 @@ namespace Repositories
                 })
                 .OrderByDescending(g => new { g.AnioExpensa, g.MesExpensa })
                 .ToList();
+        }
+
+        public string GetComprobanteAbsolutePath(string relativePath) 
+        {
+            var _PathAplicacion = HttpContext.Current.Request.PhysicalApplicationPath;
+            relativePath = "Assets" + relativePath;
+            
+            return Path.Combine(_PathAplicacion, relativePath);
+        }
+
+        public string GetComprobanteFileName(string relativePath)
+        {
+            String[] splitedPath = relativePath.Split('/');
+
+            return splitedPath.Last();
         }
     }
 }
