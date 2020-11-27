@@ -25,14 +25,14 @@ namespace ConsorcioPW3
                     .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
 
-        public void Application_PostAuthenticateRequest()
+        protected void Application_PostAuthenticateRequest()
         {
             HttpCookie cookie = Request.Cookies["SESSION"];
 
             AuthenticationCookie(cookie);
         }
 
-        public void AuthenticationCookie(HttpCookie cookie)
+        protected void AuthenticationCookie(HttpCookie cookie)
         {
             if (cookie != null)
             {
@@ -47,6 +47,19 @@ namespace ConsorcioPW3
 
                 HttpContext.Current.User = user;
             }
+        }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception exception = Server.GetLastError();
+            Response.Clear();
+
+            HttpException httpException = exception as HttpException;
+
+            int error = httpException != null ? httpException.GetHttpCode() : 0;
+
+            Server.ClearError();
+            Response.Redirect(String.Format("~/Error?error={0}", error, exception.Message));
         }
     }
 }

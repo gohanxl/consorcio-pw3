@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Services
 {
@@ -19,7 +20,8 @@ namespace Services
 
         public async Task<List<ExpensaDTO>> GetExpensasByConsorcioIdAsync(int consorcioId)
         {
-            string url = "https://localhost:44342/";
+
+            string url = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
             List<ExpensaDTO> expensas = new List<ExpensaDTO>();
             using (var client = new HttpClient())
             {

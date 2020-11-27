@@ -23,7 +23,7 @@ namespace ConsorcioPW3.App_Start
                 name: "Consorcio",
                 url: "consorcios/{idConsorcio}/{controller}/{action}/{id}",
                 defaults: new { id = UrlParameter.Optional }
-                );
+            );
         }
     }
 }
