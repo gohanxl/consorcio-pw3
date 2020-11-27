@@ -2,93 +2,73 @@
 
 @{
     Layout = "~/Views/Shared/_LogueadoLayout.cshtml";
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Gastos";
+    int consorcioId = ViewBag.ConsorcioId;
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FechaGasto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AnioExpensa)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MesExpensa)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ArchivoComprobante)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Monto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FechaCreacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Consorcio.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TipoGasto.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Usuario.Email)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaGasto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AnioExpensa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MesExpensa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ArchivoComprobante)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Monto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaCreacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Consorcio.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoGasto.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Usuario.Email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdGasto }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdGasto }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdGasto })
-        </td>
-    </tr>
-}
-
-</table>
+<section class="bg-white rounded">
+    <p>
+        @Html.ActionLink("Nuevo gasto", "Add", new { id = consorcioId }, new { @class = "btn btn-primary m-2" })
+    </p>    
+    <table id="table" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.AnioExpensa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MesExpensa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TipoGasto.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaGasto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Monto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ArchivoComprobante)
+                </th>
+                <th>
+                    Eliminar
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AnioExpensa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MesExpensa)
+                </td>
+                <td>
+                    @Html.ActionLink(item.Nombre, "Update", new { id = item.IdGasto })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoGasto.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaGasto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Monto)
+                </td>
+                <td>
+                    @Html.ActionLink("Descargar comprobante", "Download", new { filePath = item.ArchivoComprobante })                    
+                </td>                
+                <td>
+                    @Html.ActionLink(" ", "Delete", new { id = item.IdGasto }, new { @class = "fa fa-trash text-danger" })
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</section>
