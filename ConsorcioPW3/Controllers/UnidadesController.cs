@@ -47,7 +47,7 @@ namespace ConsorcioPW3.Controllers
         public ActionResult Add(Unidad unidad)
         {
             InsertUnidad(unidad);
-            return RedirectToAction("Index", new { consorcioId = unidad.IdConsorcio });
+            return RedirectToAction("Index", new { id = unidad.IdConsorcio });
         }
 
         [HttpPost]
@@ -71,7 +71,7 @@ namespace ConsorcioPW3.Controllers
         public ActionResult DeletePost(FormCollection form)
         {
             unidadService.Delete(int.Parse(form["IdUnidad"]));
-            return RedirectToAction("Index", new { consorcioId = int.Parse(form["IdConsorcio"]) });
+            return RedirectToAction("Index", new { id = int.Parse(form["IdConsorcio"]) });
         }
 
         public ActionResult Update(int id)
@@ -87,7 +87,7 @@ namespace ConsorcioPW3.Controllers
         public ActionResult Update(Unidad unidad)
         {
             unidadService.Update(unidad);
-            return RedirectToAction("Index", new { consorcioId = unidad.IdConsorcio });
+            return RedirectToAction("Index", new { id = unidad.IdConsorcio });
         }
 
         private void InsertUnidad(Unidad unidad)
