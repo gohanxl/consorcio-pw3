@@ -24,6 +24,7 @@ namespace Repositories
         public Int32 IdTipoGasto { get; set; }
 
         [Required(ErrorMessage = "La fecha de gasto es obligatorio")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FechaGasto { get; set; }
 
         [DisplayName("Año")]
