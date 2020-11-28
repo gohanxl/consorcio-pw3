@@ -24,12 +24,12 @@ namespace ConsorcioPW3.Controllers
             usuarioService = new UsuarioService(context);
         }
 
-        public ActionResult Index(int consorcioId)
+        public ActionResult Index(int id)
         {
-            Consorcio consorcio = consorcioService.GetById(consorcioId);
-            List<Unidad> unidades = unidadService.GetAllByConsorcioId(consorcioId);
+            Consorcio consorcio = consorcioService.GetById(id);
+            List<Unidad> unidades = unidadService.GetAllByConsorcioId(id);
             SitemapHelper.SetConsorcioBreadcrumbTitle(consorcio.Nombre);
-            ViewBag.ConsorcioId = consorcioId;
+            ViewBag.ConsorcioId = id;
             return View(unidades);
         }
 
@@ -76,9 +76,10 @@ namespace ConsorcioPW3.Controllers
 
         public ActionResult Update(int id)
         {
-            Consorcio consorcio = consorcioService.GetById(id);
-            ViewBag.Consorcio = consorcio;
             Unidad unidad = unidadService.GetById(id);
+            Consorcio consorcio = consorcioService.GetById(unidad.IdConsorcio);
+            SitemapHelper.SetConsorcioBreadcrumbTitle(consorcio.Nombre);
+            ViewBag.Consorcio = consorcio;
             return View(unidad);
         }
 

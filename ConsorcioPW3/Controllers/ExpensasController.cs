@@ -27,12 +27,12 @@ namespace ConsorcioPW3.Controllers
 
         }
 
-        public async Task<ActionResult> Index(int consorcioId)
+        public async Task<ActionResult> Index(int id)
         {
-            Consorcio consorcio = consorcioService.GetById(consorcioId);
-            List<ExpensaDTO> expensas = await expensasService.GetExpensasByConsorcioIdAsync(consorcioId);
-            ViewBag.GastosTotal = gastoService.GetGastosTotalCurrentMonthByConsorcio(consorcioId);
-            ViewBag.CantidadUnidades = unidadService.CountUnidadesByConsorcioId(consorcioId);
+            Consorcio consorcio = consorcioService.GetById(id);
+            List<ExpensaDTO> expensas = await expensasService.GetExpensasByConsorcioIdAsync(id);
+            ViewBag.GastosTotal = gastoService.GetGastosTotalCurrentMonthByConsorcio(id);
+            ViewBag.CantidadUnidades = unidadService.CountUnidadesByConsorcioId(id);
             ViewBag.Consorcio = consorcio;
             return View(expensas);
         }

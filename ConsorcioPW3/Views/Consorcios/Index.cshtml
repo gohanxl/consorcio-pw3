@@ -53,13 +53,13 @@
                         @Html.DisplayFor(modelItem => item.Ciudad)
                     </td>
                     <td>
-                        @Html.ActionLink("Ver Unidades", "Index", "Unidades", new { consorcioId = item.IdConsorcio }, null)
+                        @Html.ActionLink("Ver Unidades", "Index", "Unidades", new { id = item.IdConsorcio }, null)
                     </td>
                     <td>
-                        @Html.ActionLink("Ver Expensas", "Index", "Expensas", new { consorcioId = item.IdConsorcio }, null)
+                        @Html.ActionLink("Ver Expensas", "Index", "Expensas", new { id = item.IdConsorcio }, null)
                     </td>
                     <td>
-                        @Html.ActionLink("Ver Gastos", "Index", "Gastos", new { consorcioId = item.IdConsorcio }, null)
+                        @Html.ActionLink("Ver Gastos", "Index", "Gastos", new { id = item.IdConsorcio }, null)
                     </td>
                     <td>
                         @Html.ActionLink(" ", "Delete", new { id = item.IdConsorcio }, new { @class = "fa fa-trash text-danger" })

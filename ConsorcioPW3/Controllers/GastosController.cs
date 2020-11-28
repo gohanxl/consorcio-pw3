@@ -29,14 +29,14 @@ namespace ConsorcioPW3.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult Index(int consorcioId)
+        public ActionResult Index(int id)
         {
             IEnumerable<Gasto> gastos = gastoService.GetAll();
             CargarListasEnViewBag();
-            Consorcio consorcio = consorcioService.GetById(consorcioId);
+            Consorcio consorcio = consorcioService.GetById(id);
             SitemapHelper.SetConsorcioBreadcrumbTitle(consorcio.Nombre);
             ViewBag.Consorcio = consorcio;
-            ViewBag.ConsorcioId = consorcioId;
+            ViewBag.ConsorcioId = id;
             return View(gastos);
         }
 
