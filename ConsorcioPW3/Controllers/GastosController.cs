@@ -35,6 +35,7 @@ namespace ConsorcioPW3.Controllers
             CargarListasEnViewBag();
             Consorcio consorcio = consorcioService.GetById(consorcioId);
             SitemapHelper.SetConsorcioBreadcrumbTitle(consorcio.Nombre);
+            ViewBag.Consorcio = consorcio;
             ViewBag.ConsorcioId = consorcioId;
             return View(gastos);
         }

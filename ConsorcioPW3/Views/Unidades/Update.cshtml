@@ -3,6 +3,8 @@
 @{
     Layout = "~/Views/Shared/_LogueadoLayout.cshtml";
     ViewBag.Title = "Actualizar unidad";
+
+    Repositories.Consorcio consorcio = ViewBag.Consorcio;
 }
 
 <section class="container bg-white rounded mb-3 p-3">
@@ -13,7 +15,7 @@
         @Html.HiddenFor(model => model.IdUsuarioCreador)
         @Html.HiddenFor(model => model.FechaCreacion)
         <div class="form-horizontal">
-            <h4>Unidad</h4>
+            <h4>@consorcio.Nombre - Editando Unidad "@Model.Nombre"</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
