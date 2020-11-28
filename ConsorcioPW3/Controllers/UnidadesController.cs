@@ -46,8 +46,15 @@ namespace ConsorcioPW3.Controllers
         [MultipleButton(Name = "action", Argument = "save")]
         public ActionResult Add(Unidad unidad)
         {
-            InsertUnidad(unidad);
-            return RedirectToAction("Index", new { id = unidad.IdConsorcio });
+            if (ModelState.IsValid)
+            {
+                InsertUnidad(unidad);
+                return RedirectToAction("Index", new { id = unidad.IdConsorcio });
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpPost]
@@ -55,8 +62,15 @@ namespace ConsorcioPW3.Controllers
         [MultipleButton(Name = "action", Argument = "unidad")]
         public ActionResult AddAndCreate(Unidad unidad)
         {
-            InsertUnidad(unidad);
-            return RedirectToAction("Add", new { id = unidad.IdConsorcio });
+            if (ModelState.IsValid)
+            {
+                InsertUnidad(unidad);
+                return RedirectToAction("Add", new { id = unidad.IdConsorcio });
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]
@@ -86,8 +100,15 @@ namespace ConsorcioPW3.Controllers
         [HttpPost]
         public ActionResult Update(Unidad unidad)
         {
-            unidadService.Update(unidad);
-            return RedirectToAction("Index", new { id = unidad.IdConsorcio });
+            if (ModelState.IsValid)
+            {
+                unidadService.Update(unidad);
+                return RedirectToAction("Index", new { id = unidad.IdConsorcio });
+            }
+            else
+            {
+                return View();
+            }
         }
 
         private void InsertUnidad(Unidad unidad)

@@ -48,24 +48,45 @@ namespace ConsorcioPW3.Controllers
         [MultipleButton(Name = "action", Argument = "save")]
         public ActionResult Add(Consorcio consorcio)
         {
-            InsertConsorcio(consorcio);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                InsertConsorcio(consorcio);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpPost]
         [MultipleButton(Name = "action", Argument = "consorcio")]
         public ActionResult AddAndCreateConsorcio(Consorcio consorcio)
         {
-            InsertConsorcio(consorcio);
-            return RedirectToAction("Add");
+            if (ModelState.IsValid)
+            {
+                InsertConsorcio(consorcio);
+                return RedirectToAction("Add");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpPost]
         [MultipleButton(Name = "action", Argument = "unidades")]
         public ActionResult AddAndCreateUnidades(Consorcio consorcio)
         {
-            InsertConsorcio(consorcio);
-            return RedirectToAction("Add", "Unidades", new { id = consorcio.IdConsorcio });
+            if (ModelState.IsValid)
+            {
+                InsertConsorcio(consorcio);
+                return RedirectToAction("Add", "Unidades", new { id = consorcio.IdConsorcio });
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]
@@ -79,8 +100,14 @@ namespace ConsorcioPW3.Controllers
         [ActionName("Delete")]
         public ActionResult DeletePost(int id)
         {
-            consorcioService.Delete(id);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                consorcioService.Delete(id);
+                return RedirectToAction("Index");
+            }
+            {
+                return View();
+            }
         }
 
         [SiteMapTitle("title")]
@@ -97,15 +124,21 @@ namespace ConsorcioPW3.Controllers
         [HttpPost]
         public ActionResult Update(Consorcio consorcio)
         {
-            consorcioService.Update(consorcio);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                consorcioService.Update(consorcio);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         private void InsertConsorcio(Consorcio consorcio)
         {
             try
             {
-                
                 Usuario user = GetUser();
                 consorcio.FechaCreacion = DateTime.Now;
                 consorcio.IdUsuarioCreador = user.IdUsuario;
