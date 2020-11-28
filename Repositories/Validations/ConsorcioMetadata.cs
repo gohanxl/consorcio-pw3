@@ -26,6 +26,7 @@ namespace Repositories
         [Required(ErrorMessage = "El {0} es obligatorio")]
         public int Altura { get; set; }
 
+        [DisplayName("Día de vencimiento de expensas")]
         [Range(1, 28, ErrorMessage = "El día debe ser entre el {1} y el {2}")]
         [Required(ErrorMessage = "El {0} es obligatorio")]
         public int DiaVencimientoExpensas { get; set; }

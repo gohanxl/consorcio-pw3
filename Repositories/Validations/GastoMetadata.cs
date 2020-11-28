@@ -23,8 +23,9 @@ namespace Repositories
         [Required(ErrorMessage = "El {0} es obligatorio")]
         public Int32 IdTipoGasto { get; set; }
 
-        [Required(ErrorMessage = "La fecha de gasto es obligatorio")]
+        [DisplayName("Fecha de gasto")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "La fecha de gasto es obligatorio")]
         public DateTime FechaGasto { get; set; }
 
         [DisplayName("Año")]
@@ -42,7 +43,6 @@ namespace Repositories
         [Required(ErrorMessage = "El {0} es obligatorio")]
         public decimal Monto { get; set; }
 
-        [DisplayName("Fecha de creación")]
         [Required(ErrorMessage = "La fecha de creacion es obligatorio")]
         public DateTime FechaCreacion { get; set; }
     
