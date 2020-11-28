@@ -91,9 +91,8 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.ArchivoComprobante, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.ArchivoComprobante, new { type = "file", name = "file" })
+                    @Html.TextBoxFor(model => model.ArchivoComprobante, new { type = "file", name = "file", data_val = false })
                     @Html.ValidationMessageFor(model => model.ArchivoComprobante, "", new { @class = "text-danger" })
-
                 </div>
                 <div class="col-md-10 mt-3">
                     @Html.ActionLink("Descargar comprobante", "Download", new { id = @Model.IdGasto })
