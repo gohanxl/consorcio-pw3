@@ -15,7 +15,7 @@
         @Html.HiddenFor(u => u.IdConsorcio)
         <div class="form-actions no-color">
             <input type="submit" value="Eliminar" class="btn btn-danger" />
-            @Html.ActionLink("Cancelar", "Index", new { consorcioId = Model.IdConsorcio }, new { @class = "btn btn-secondary" })
+            @Html.ActionLink("Cancelar", "Index", new { id = Model.IdConsorcio }, new { @class = "btn btn-secondary" })
         </div>
     }
 </section>
