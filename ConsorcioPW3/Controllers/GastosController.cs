@@ -57,7 +57,7 @@ namespace ConsorcioPW3.Controllers
             
             InsertGasto(gasto, path);
 			this.AddNotification($"Gasto {gasto.Nombre} creado con exito!", NotificationType.SUCCESS);
-            return RedirectToAction("Index", new { consorcioId = gasto.IdConsorcio });
+            return RedirectToAction("Index", new { id = gasto.IdConsorcio });
         }
 
         [HttpPost]
@@ -87,7 +87,7 @@ namespace ConsorcioPW3.Controllers
             string path = GetAndSaveFile();
             gasto.ArchivoComprobante = path;
             gastoService.Update(gasto);
-            return RedirectToAction("Index", new { consorcioId = gasto.IdConsorcio });
+            return RedirectToAction("Index", new { id = gasto.IdConsorcio });
         }
 
         [HttpGet]
@@ -102,7 +102,7 @@ namespace ConsorcioPW3.Controllers
         public ActionResult DeletePost(FormCollection form)
         {
             gastoService.Delete(int.Parse(form["IdGasto"]));
-            return RedirectToAction("Index", new { consorcioId = int.Parse(form["IdConsorcio"]) });
+            return RedirectToAction("Index", new { id = int.Parse(form["IdConsorcio"]) });
         }
 
         [HttpGet]
@@ -119,7 +119,7 @@ namespace ConsorcioPW3.Controllers
             } 
             catch (Exception e) {
                 this.AddNotification($"Comprobante no encontrado", NotificationType.ERROR);
-                return RedirectToAction("Index", new { consorcioId = gasto.IdConsorcio });
+                return RedirectToAction("Index", new { id = gasto.IdConsorcio });
             }
             
             
