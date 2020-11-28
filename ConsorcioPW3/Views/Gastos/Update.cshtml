@@ -93,6 +93,10 @@
                 <div class="col-md-10">
                     @Html.TextBoxFor(model => model.ArchivoComprobante, new { type = "file", name = "file" })
                     @Html.ValidationMessageFor(model => model.ArchivoComprobante, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="col-md-10 mt-3">
+                    @Html.ActionLink("Descargar comprobante", "Download", new { id = @Model.IdGasto })
                 </div>
             </div>
 
