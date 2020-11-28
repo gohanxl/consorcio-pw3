@@ -13,19 +13,23 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 @if (HttpContext.Current.User.Identity.IsAuthenticated)
                 {
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a href="@Url.Action("Index", "Consorcios")" id="my-consortiums" class="text-decoration-none">
-                                <span class="text-white">Mis Consorcios</span>
+                    <div class="my-3">
+                        <span class="text-white mr-4">Bienvenido @HttpContext.Current.User.Identity.Name</span>
+                        @*@Html.ActionLink("Cerrar sesion", "Logout", "Home", null, new { @class = "btn btn-danger text-white" })*@
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="navbar-toggler-icon"></span>
+                        </a>
+                        <div class="dropdown-menu custom-dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a href="@Url.Action("Index", "Consorcios")" id="my-consortiums" class=" dropdown-item">
+                                <span>Mis Consorcios</span>
                             </a>
-                        </li>
-                    </ul>
-                    <div class="my-2">
-                        <span class="text-white">Bienvenido @HttpContext.Current.User.Identity.Name</span>
-                        @Html.ActionLink("Cerrar sesion", "Logout", "Home", null, new { @class = "btn btn-danger text-white" })
+                            @Html.ActionLink("Cerrar sesion", "Logout", "Home", null, new { @class = "dropdown-item text-danger" })
+                        </div>
                     </div>
                 }
             </div>

@@ -74,9 +74,15 @@ body {
     width: 40px !important;
 }
 
-    .main-logo:hover {
-        opacity: .5;
-    }
+.main-logo:hover {
+    opacity: .5;
+}
+
+.custom-dropdown-menu.show {
+    left: unset !important;
+    right: 0 !important;
+}
+
 
 /* footer */
 #footer {
