@@ -17,7 +17,7 @@
             Unidades: @ViewBag.CantidadUnidades
         </span>
         <span>
-            Monto por Unidad: @(ViewBag.GastosTotal/ViewBag.CantidadUnidades)
+            Monto por Unidad: @(ViewBag.CantidadUnidades > 0 ? @ViewBag.GastosTotal / @ViewBag.CantidadUnidades : "Sin unidades")
         </span>
     </div>
     <table id="table" class="table table-striped table-bordered">

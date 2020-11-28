@@ -4,18 +4,18 @@
             xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
 
 	<mvcSiteMapNode title="Home" controller="Home" action="Index">
-		<mvcSiteMapNode title="Mis Consorcios" controller="Consorcios" action="Index">
+		<mvcSiteMapNode title="Mis Consorcios" controller="Consorcios" action="Index" >
 			<mvcSiteMapNode title="Nuevo Consorcio" controller="Consorcios" action="Add" />
-			<mvcSiteMapNode title="Consorcio" controller="Consorcios" action="Update" preservedRouteParameters="id">
-				<mvcSiteMapNode title="Unidades" controller="Unidades" action="Index">
+			<mvcSiteMapNode title="Consorcio" controller="Consorcios" action="Update"  preservedRouteParameters="id">
+				<mvcSiteMapNode title="Unidades" controller="Unidades" action="Index" preservedRouteParameters="id">
 					<mvcSiteMapNode title="Nueva Unidad" controller="Unidades" action="Add" preservedRouteParameters="id" />
 					<mvcSiteMapNode title="Editando Unidad" controller="Unidades" action="Update" preservedRouteParameters="id" />
 				</mvcSiteMapNode>
-				<mvcSiteMapNode title="Gastos" controller="Gastos" action="Index">
+				<mvcSiteMapNode title="Gastos" controller="Gastos" action="Index" preservedRouteParameters="id">
 					<mvcSiteMapNode title="Nuevo Gasto" controller="Gastos" action="Add" preservedRouteParameters="id" />
 					<mvcSiteMapNode title="Editando Gasto" controller="Gastos" action="Update" preservedRouteParameters="id" />
 				</mvcSiteMapNode>
-				<mvcSiteMapNode title="Expensas" controller="Expensas" action="Index" />
+				<mvcSiteMapNode title="Expensas" controller="Expensas" action="Index"  preservedRouteParameters="id"/>
 			</mvcSiteMapNode>
 		</mvcSiteMapNode>
 	</mvcSiteMapNode>
