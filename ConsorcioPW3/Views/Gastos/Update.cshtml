@@ -27,6 +27,7 @@
         @Html.HiddenFor(model => model.IdGasto)
         @Html.HiddenFor(model => model.IdUsuarioCreador)
         @Html.HiddenFor(model => model.FechaCreacion)
+        @Html.HiddenFor(model => model.ArchivoComprobante, new { data_val = false })
         <div class="form-horizontal">
             <h4>@consorcio.Nombre - Editando Gasto "@Model.Nombre"</h4>
             <hr />

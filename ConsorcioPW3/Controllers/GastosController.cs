@@ -85,7 +85,11 @@ namespace ConsorcioPW3.Controllers
         public ActionResult Update(Gasto gasto)
         {
             string path = GetAndSaveFile();
-            gasto.ArchivoComprobante = path;
+
+            if (path != "" && gasto.ArchivoComprobante != path) {
+                gasto.ArchivoComprobante = path;
+            }
+
             gastoService.Update(gasto);
             return RedirectToAction("Index", new { id = gasto.IdConsorcio });
         }
