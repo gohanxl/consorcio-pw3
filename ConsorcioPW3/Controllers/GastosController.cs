@@ -75,6 +75,7 @@ namespace ConsorcioPW3.Controllers
             {
                 string path = GetAndSaveFile();
                 InsertGasto(gasto, path);
+                this.AddNotification($"Gasto {gasto.Nombre} creado con exito!", NotificationType.SUCCESS);
                 return RedirectToAction("Add", new { id = gasto.IdConsorcio });
             }
             else

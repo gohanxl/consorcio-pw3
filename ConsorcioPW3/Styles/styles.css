@@ -104,48 +104,7 @@ footer {
     left: 0;
 }
 
-/*.ui-datepicker {
-    width: 216px;
-    height: auto;
-    margin: 5px auto 0;
-    font: 9pt Arial, sans-serif;
-    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
-    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
-}
-
-    .ui-datepicker a {
-        text-decoration: none;
-    }
-
-    .ui-datepicker table {
-        width: 100%;
-    }
-
-.ui-datepicker-header {
-    background: url('../img/dark_leather.png') repeat 0 0 #000;
-    color: #e0e0e0;
-    font-weight: bold;
-    -webkit-box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, 2);
-    -moz-box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, .2);
-    box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, .2);
-    text-shadow: 1px -1px 0px #000;
-    filter: dropshadow(color=#000, offx=1, offy=-1);
-    line-height: 30px;
-    border-width: 1px 0 0 0;
-    border-style: solid;
-    border-color: #111;
-}
-
-.ui-datepicker th {
-    text-transform: uppercase;
-    font-size: 6pt;
-    padding: 5px 0;
-    color: #666666;
-    text-shadow: 1px 0px 0px #fff;
-    filter: dropshadow(color=#fff, offx=1, offy=0);
-}*/
-
+/* datepicker */
 
 .ui-widget {
     font-family: "Helvetica","Trebuchet MS",Tahoma,Verdana,Arial,sans-serif;
@@ -268,8 +227,32 @@ td .ui-state-hover {
 }
 
 td .ui-state-active {
-    background: #3f6b8a; /* layer fill content */
+    background: var(--button-primary); /* layer fill content */
     -moz-box-shadow: inset 0 0 5px rgba(7,15,21,.9); /* inner shadow */
     -webkit-box-shadow: inset 0 0 5px rgba(7,15,21,.9); /* inner shadow */
     box-shadow: inset 0 0 5px rgba(7,15,21,.9); /* inner shadow */
+}
+
+a.ui-datepicker-prev.ui-corner-all {
+    margin-right: 200px !important;
+}
+
+a.ui-datepicker-prev, a.ui-datepicker-next {
+    color: var(--button-primary) !important;
+}
+
+.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all {
+    position: relative;
+}
+
+td.ui-datepicker-other-month.ui-datepicker-unselectable.ui-state-disabled {
+    background: #313131;
+    box-shadow: inset 0 0 3px #ffffff17;
+}
+
+.ui-datepicker-title {
+    position: absolute;
+    top: 0;
+    left: 100px;
+
 }
