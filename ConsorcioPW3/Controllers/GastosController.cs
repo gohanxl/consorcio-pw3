@@ -53,21 +53,34 @@ namespace ConsorcioPW3.Controllers
         [MultipleButton(Name = "action", Argument = "save")]
         public ActionResult Add(Gasto gasto)
         {            
-            string path = GetAndSaveFile();
-            
-            InsertGasto(gasto, path);
-			this.AddNotification($"Gasto {gasto.Nombre} creado con exito!", NotificationType.SUCCESS);
-            return RedirectToAction("Index", new { id = gasto.IdConsorcio });
+            if (ModelState.IsValid)
+            {
+                string path = GetAndSaveFile();
+                InsertGasto(gasto, path);
+                this.AddNotification($"Gasto {gasto.Nombre} creado con exito!", NotificationType.SUCCESS);
+                return RedirectToAction("Index", new { id = gasto.IdConsorcio });
+            }
+            else
+            {
+                return View();
+            }
+
         }
 
         [HttpPost]
         [MultipleButton(Name = "action", Argument = "gasto")]
         public ActionResult AddAndCreateGasto(Gasto gasto)
         {
-            string path = GetAndSaveFile();
-
-            InsertGasto(gasto, path);
-            return RedirectToAction("Add", new { id = gasto.IdConsorcio });
+            if (ModelState.IsValid)
+            {
+                string path = GetAndSaveFile();
+                InsertGasto(gasto, path);
+                return RedirectToAction("Add", new { id = gasto.IdConsorcio });
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult Update(int id)
@@ -84,15 +97,19 @@ namespace ConsorcioPW3.Controllers
         [HttpPost]
         public ActionResult Update(Gasto gasto)
         {
-            string path = GetAndSaveFile();
-
-            if (path != "" && gasto.ArchivoComprobante != path) {
-                gasto.ArchivoComprobante = path;
+            if (ModelState.IsValid)
+            {
+                string path = GetAndSaveFile();
+				if (path != "" && gasto.ArchivoComprobante != path) {
+                	gasto.ArchivoComprobante = path;
+            	}                
+                gastoService.Update(gasto);
+                return RedirectToAction("Index", new { id = gasto.IdConsorcio });
             }
-
-            gastoService.Update(gasto);
-            return RedirectToAction("Index", new { id = gasto.IdConsorcio });
-        }
+            else
+            {
+                return View();
+            }        }
 
         [HttpGet]
         public ActionResult Delete(int id)
@@ -105,8 +122,15 @@ namespace ConsorcioPW3.Controllers
         [ActionName("Delete")]
         public ActionResult DeletePost(FormCollection form)
         {
-            gastoService.Delete(int.Parse(form["IdGasto"]));
-            return RedirectToAction("Index", new { id = int.Parse(form["IdConsorcio"]) });
+            if (ModelState.IsValid)
+            {
+                gastoService.Delete(int.Parse(form["IdGasto"]));
+                return RedirectToAction("Index", new { id = int.Parse(form["IdConsorcio"]) });
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]
