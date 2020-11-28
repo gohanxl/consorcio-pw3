@@ -3,12 +3,23 @@
 @{
     Layout = "~/Views/Shared/_LogueadoLayout.cshtml";
     ViewBag.Title = "Consorcios";
+
+    Repositories.Consorcio consorcio = ViewBag.Consorcio;
 }
 
 <section class="bg-white rounded">
-    <p>
-        @Html.ActionLink("Crear nuevo consorcio", "Add", null, new { @class = "btn btn-primary m-2" })
+    <h2 class="py-2 px-3">@consorcio.Nombre - Expensas</h2>
+    <p class="px-3">
+        Gasto total mes actual @DateTime.Now.Month (hasta el momento): $@ViewBag.GastosTotal
     </p>
+    <div class="d-flex justify-content-between px-3">
+        <span>
+            Unidades: @ViewBag.CantidadUnidades
+        </span>
+        <span>
+            Monto por Unidad: @(ViewBag.GastosTotal/ViewBag.CantidadUnidades)
+        </span>
+    </div>
     <table id="table" class="table table-striped table-bordered">
         <thead>
             <tr>
