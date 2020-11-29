@@ -2,3 +2,20 @@
     Layout = "~/Views/Shared/_LogueadoLayout.cshtml";
     ViewBag.Title = "Index";
 }
+
+<section class="container bg-white rounded w-100 mt-5 px-5 py-4 text-center">
+    <img class="welcome-logo" src="~/Assets/Pictures/logo.png" alt="logo-inicio" />
+    <h3 class="mb-5"> Bienvenido!</h3>
+    <h1 class="mb-5">Sistema para la Administración de Consorcios</h1>
+    @if (HttpContext.Current.User.Identity.IsAuthenticated)
+    {
+        <a href="@Url.Action("Index", "Consorcios")" id="my-consortiums" class="btn-link">
+            <span>Mis Consorcios</span>
+        </a>
+    }
+    @if (!HttpContext.Current.User.Identity.IsAuthenticated)
+    {
+        @Html.ActionLink("Registrarse", "Register", "Home", null, new { @class = "btn btn-info text-white" })
+        @Html.ActionLink("Iniciar sesión", "Login", "Home", null, new { @class = "btn btn-primary text-white" })
+    }
+</section>

@@ -69,6 +69,11 @@ body {
     color: #dc3545;
 }
 
+.welcome-logo {
+    width: 7%;
+    filter: invert(0%) sepia(0%) saturate(7500%) hue-rotate(263deg) brightness(20%) contrast(107%);
+}
+
 /* header */
 .main-logo {
     width: 40px !important;
