@@ -141,9 +141,9 @@ namespace ConsorcioPW3.Controllers
 
             string absolutePath = gastoService.GetComprobanteAbsolutePath(gasto.ArchivoComprobante);
             string fileName = gastoService.GetComprobanteFileName(gasto.ArchivoComprobante);
-            byte[] fileBytes = null;
-
-            try {
+            byte[] fileBytes;
+            try
+            {
                 fileBytes = System.IO.File.ReadAllBytes(absolutePath);
             } 
             catch (Exception e) {
