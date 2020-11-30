@@ -191,6 +191,14 @@ namespace ConsorcioPW3.Controllers
 
         private string GuardarArchivo(HttpPostedFileBase file)
         {
+
+            string directoryPath = "C:/Users/Lucas Lacqua/source/repos/ConsorcioPW3/ConsorcioPW3/Assets/Gastos";
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
             string fileName = Path.GetFileName(file.FileName);
 
             string absolutePath = Path.Combine(Server.MapPath("~/Assets/Gastos/"), fileName);
