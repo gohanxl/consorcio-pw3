@@ -23,6 +23,11 @@ namespace Services
             return repo.GetExpensasById(consorcioId);
         }
 
+        public List<Gasto> GetAllByConsorcioId(int consorcioId)
+        {
+            return repo.GetAllByConsorcioId(consorcioId);
+        }
+
         public string GetComprobanteAbsolutePath(string relativePath) 
         {
             return repo.GetComprobanteAbsolutePath(relativePath);

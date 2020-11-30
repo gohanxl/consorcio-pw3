@@ -48,6 +48,15 @@ namespace Repositories
                 .ToList();
         }
 
+        public List<Gasto> GetAllByConsorcioId(int consorcioId)
+        {
+            List<Gasto> gastos = ctx.Gasto
+                .Where(u => u.IdConsorcio == consorcioId)
+                .OrderBy(u => u.Nombre)
+                .ToList();
+            return gastos;
+        }
+
         public string GetComprobanteAbsolutePath(string relativePath) 
         {
             var _PathAplicacion = HttpContext.Current.Request.PhysicalApplicationPath;
