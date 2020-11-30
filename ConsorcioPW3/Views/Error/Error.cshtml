@@ -1,7 +1,14 @@
 ﻿
 @{
     ViewBag.Title = "Error";
-    Layout = "~/Views/Shared/_AnonimoLayout.cshtml";
+    if (HttpContext.Current.User.Identity.IsAuthenticated)
+    {
+        Layout = "~/Views/Shared/_LogueadoLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_AnonimoLayout.cshtml";
+    }
 }
 
 
