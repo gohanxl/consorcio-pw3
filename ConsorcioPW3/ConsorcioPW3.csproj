@@ -319,7 +319,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\BienvenidoController.cs" />
     <Compile Include="Controllers\ConsorciosController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ExpensasController.cs" />
@@ -341,7 +340,6 @@
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_BaseLayout.cshtml" />
-    <Content Include="Views\Bienvenido\Index.cshtml" />
     <Content Include="Styles\bootstrap-grid.css.map" />
     <Content Include="Styles\bootstrap-grid.min.css.map" />
     <Content Include="Styles\bootstrap-reboot.css.map" />

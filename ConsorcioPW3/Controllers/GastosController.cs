@@ -141,9 +141,9 @@ namespace ConsorcioPW3.Controllers
 
             string absolutePath = gastoService.GetComprobanteAbsolutePath(gasto.ArchivoComprobante);
             string fileName = gastoService.GetComprobanteFileName(gasto.ArchivoComprobante);
-            byte[] fileBytes = null;
-
-            try {
+            byte[] fileBytes;
+            try
+            {
                 fileBytes = System.IO.File.ReadAllBytes(absolutePath);
             } 
             catch (Exception e) {
@@ -191,9 +191,17 @@ namespace ConsorcioPW3.Controllers
 
         private string GuardarArchivo(HttpPostedFileBase file)
         {
+
+            string directoryPath = Server.MapPath("~/Assets/Gastos/");
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
             string fileName = Path.GetFileName(file.FileName);
 
-            string absolutePath = Path.Combine(Server.MapPath("~/Assets/Gastos/"), fileName);
+            string absolutePath = Path.Combine(directoryPath, fileName);
             string relativePath = "/Gastos/" + fileName;
 
             file.SaveAs(absolutePath);

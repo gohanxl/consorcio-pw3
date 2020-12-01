@@ -77,7 +77,7 @@ namespace ConsorcioPW3.Controllers
             {
                 return Redirect(ReturnUrl);
             }
-            return Redirect("/Bienvenido");
+            return Redirect("Index");
 
         }
 
@@ -89,7 +89,7 @@ namespace ConsorcioPW3.Controllers
             cookie.Expires = DateTime.Now.AddDays(-1D);
             Response.Cookies.Add(cookie);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Login");
         }
         
         private void UpdateLastLogin(Usuario user)
