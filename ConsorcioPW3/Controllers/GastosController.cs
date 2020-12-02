@@ -151,7 +151,6 @@ namespace ConsorcioPW3.Controllers
                 return RedirectToAction("Index", new { id = gasto.IdConsorcio });
             }
             
-            
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
 
@@ -199,7 +198,7 @@ namespace ConsorcioPW3.Controllers
                 Directory.CreateDirectory(directoryPath);
             }
 
-            string fileName = Path.GetFileName(file.FileName);
+            string fileName = DateTime.Now.ToString("yyyyMMddTHHmmssfffffff") + Path.GetFileName(file.FileName);
 
             string absolutePath = Path.Combine(directoryPath, fileName);
             string relativePath = "/Gastos/" + fileName;
