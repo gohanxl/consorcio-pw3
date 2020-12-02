@@ -32,6 +32,7 @@ namespace Repositories
             return total;
         }
 
+        // Verificar cantidad de unidades
         public List<ExpensaDTO> GetExpensasById(int consorcioId)
         {
             return ctx.Gasto
