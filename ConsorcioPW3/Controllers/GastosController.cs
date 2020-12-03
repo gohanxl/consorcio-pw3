@@ -179,7 +179,7 @@ namespace ConsorcioPW3.Controllers
             {
 
                 string absolutePath = gastoService.GetComprobanteAbsolutePath(gasto.ArchivoComprobante);
-                string fileName = gastoService.GetComprobanteFileName(gasto.ArchivoComprobante);
+                string fileName = gastoService.GetComprobanteFileName(gasto.ArchivoComprobante, $"Gasto-{gasto.Nombre}");
                 byte[] fileBytes;
 
                 try
@@ -244,7 +244,7 @@ namespace ConsorcioPW3.Controllers
                 Directory.CreateDirectory(directoryPath);
             }
 
-            string fileName = Path.GetFileName(file.FileName);
+            string fileName = DateTime.Now.ToString("yyyyMMddTHHmmssfffffff") + Path.GetFileName(file.FileName);
 
             string absolutePath = Path.Combine(directoryPath, fileName);
             string relativePath = "/Gastos/" + fileName;

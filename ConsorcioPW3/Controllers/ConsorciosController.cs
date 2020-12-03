@@ -34,7 +34,15 @@ namespace ConsorcioPW3.Controllers
         public ActionResult Index()
         {
             Usuario user = GetUser();
-            List<Consorcio> consorcios = consorcioService.GetAllByUser(user.IdUsuario);
+            List<Consorcio> consorcios;
+
+            if (user == null)
+            {
+                consorcios = consorcioService.GetAll();
+                return View(consorcios);
+            }
+
+            consorcios = consorcioService.GetAllByUser(user.IdUsuario);
             return View(consorcios);
         }
 

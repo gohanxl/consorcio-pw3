@@ -33,9 +33,9 @@ namespace Services
             return repo.GetComprobanteAbsolutePath(relativePath);
         }
 
-        public string GetComprobanteFileName(string relativePath)
+        public string GetComprobanteFileName(string relativePath, string newFileName)
         {
-            return repo.GetComprobanteFileName(relativePath);
+            return repo.GetComprobanteFileName(relativePath, newFileName);
         }
 
         public bool ValidateCreatorWithCurrentUser(string currentUserEmail, string creatorUserEmail)

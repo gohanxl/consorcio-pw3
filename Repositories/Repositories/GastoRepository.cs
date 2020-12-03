@@ -12,7 +12,7 @@ namespace Repositories
     public class GastoRepository : BaseRepository<Gasto>
     {
         public GastoRepository(ConsortiumContext context) : base(context)
-        { 
+        {
         }
 
         public decimal GetGastosTotalCurrentMonthByConsorcio(int consorcioId)
@@ -32,6 +32,7 @@ namespace Repositories
             return total;
         }
 
+        // Verificar cantidad de unidades
         public List<ExpensaDTO> GetExpensasById(int consorcioId)
         {
             return ctx.Gasto
@@ -57,19 +58,22 @@ namespace Repositories
             return gastos;
         }
 
-        public string GetComprobanteAbsolutePath(string relativePath) 
+        public string GetComprobanteAbsolutePath(string relativePath)
         {
             var _PathAplicacion = HttpContext.Current.Request.PhysicalApplicationPath;
             relativePath = "Assets" + relativePath;
-            
+
             return Path.Combine(_PathAplicacion, relativePath);
         }
 
-        public string GetComprobanteFileName(string relativePath)
+        public string GetComprobanteFileName(string relativePath, string newFileName)
         {
             String[] splitedPath = relativePath.Split('/');
+            string extension = splitedPath.Last().Split('.').Last();
 
-            return splitedPath.Last();
+            string fileName = $"{newFileName}.{extension}";
+
+            return fileName;
         }
 
         public bool ValidateCreatorWithCurrentUser(string currentUserEmail, string creatorUserEmail)
