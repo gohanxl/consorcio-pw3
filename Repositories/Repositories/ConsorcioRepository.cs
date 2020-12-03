@@ -33,5 +33,10 @@ namespace Repositories
             consorcioFound.Provincia = obj.Provincia;
             ctx.SaveChanges();
         }
+
+        public bool ValidateCreatorWithCurrentUser(string currentUserEmail, string creatorUserEmail)
+        {
+            return currentUserEmail.Equals(creatorUserEmail);
+        }
     }
 }

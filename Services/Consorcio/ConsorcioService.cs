@@ -18,5 +18,10 @@ namespace Services
         {
             return repo.GetAllByUser(userId);
         }
+
+        public bool ValidateCreatorWithCurrentUser(string currentUserEmail, string creatorUserEmail)
+        {
+            return repo.ValidateCreatorWithCurrentUser(currentUserEmail, creatorUserEmail);
+        }
     }
 }
