@@ -41,7 +41,7 @@ namespace ConsorcioPW3.Controllers
         }
 
         public ActionResult Add(int id)
-        {            
+        {
             Consorcio consorcio = consorcioService.GetById(id);
             SitemapHelper.SetConsorcioBreadcrumbTitle(consorcio.Nombre);
             CargarListasEnViewBag();
@@ -52,7 +52,7 @@ namespace ConsorcioPW3.Controllers
         [HttpPost]
         [MultipleButton(Name = "action", Argument = "save")]
         public ActionResult Add(Gasto gasto)
-        {            
+        {
             if (ModelState.IsValid)
             {
                 string path = GetAndSaveFile();
@@ -101,16 +101,18 @@ namespace ConsorcioPW3.Controllers
             if (ModelState.IsValid)
             {
                 string path = GetAndSaveFile();
-				if (path != "" && gasto.ArchivoComprobante != path) {
-                	gasto.ArchivoComprobante = path;
-            	}                
+                if (path != "" && gasto.ArchivoComprobante != path)
+                {
+                    gasto.ArchivoComprobante = path;
+                }
                 gastoService.Update(gasto);
                 return RedirectToAction("Index", new { id = gasto.IdConsorcio });
             }
             else
             {
                 return View();
-            }        }
+            }
+        }
 
         [HttpGet]
         public ActionResult Delete(int id)
@@ -140,17 +142,19 @@ namespace ConsorcioPW3.Controllers
             Gasto gasto = gastoService.GetById(id);
 
             string absolutePath = gastoService.GetComprobanteAbsolutePath(gasto.ArchivoComprobante);
-            string fileName = gastoService.GetComprobanteFileName(gasto.ArchivoComprobante);
+            string fileName = gastoService.GetComprobanteFileName(gasto.ArchivoComprobante, $"Gasto-{gasto.Nombre}");
+
             byte[] fileBytes;
             try
             {
                 fileBytes = System.IO.File.ReadAllBytes(absolutePath);
-            } 
-            catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 this.AddNotification($"Comprobante no encontrado", NotificationType.ERROR);
                 return RedirectToAction("Index", new { id = gasto.IdConsorcio });
             }
-            
+
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
 
