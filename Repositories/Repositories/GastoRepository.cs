@@ -71,5 +71,10 @@ namespace Repositories
 
             return splitedPath.Last();
         }
+
+        public bool ValidateCreatorWithCurrentUser(string currentUserEmail, string creatorUserEmail)
+        {
+            return currentUserEmail.Equals(creatorUserEmail);
+        }
     }
 }
