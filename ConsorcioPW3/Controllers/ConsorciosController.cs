@@ -1,4 +1,4 @@
-﻿    using ConsorcioPW3.Helpers;
+﻿using ConsorcioPW3.Helpers;
 using MvcSiteMapProvider;
 using MvcSiteMapProvider.Web.Mvc.Filters;
 using Repositories;
@@ -101,7 +101,16 @@ namespace ConsorcioPW3.Controllers
         public ActionResult Delete(int id)
         {
             Consorcio consorcio = consorcioService.GetById(id);
-            return View(consorcio);
+            Usuario creatorUser = usuarioService.GetById(consorcio.IdUsuarioCreador);
+            bool isCurrentUserCreator = consorcioService.ValidateCreatorWithCurrentUser(HttpContext.User.Identity.Name, creatorUser.Email);
+            if (isCurrentUserCreator)
+            {
+                return View(consorcio);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Error", new { error = "403" });
+            }
         }
 
         [HttpPost]
@@ -123,10 +132,19 @@ namespace ConsorcioPW3.Controllers
         {
             CargarListasEnViewBag();
             Consorcio consorcio = consorcioService.GetById(id);
-            int unidadesCount = unidadService.CountUnidadesByConsorcioId(id);
-            ViewData["Title"] = consorcio.Nombre;
-            ViewBag.UnidadesCount = unidadesCount;
-            return View(consorcio);
+            Usuario creatorUser = usuarioService.GetById(consorcio.IdUsuarioCreador);
+            bool isCurrentUserCreator = consorcioService.ValidateCreatorWithCurrentUser(HttpContext.User.Identity.Name, creatorUser.Email);
+            if (isCurrentUserCreator)
+            {
+                int unidadesCount = unidadService.CountUnidadesByConsorcioId(id);
+                ViewData["Title"] = consorcio.Nombre;
+                ViewBag.UnidadesCount = unidadesCount;
+                return View(consorcio);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Error", new { error = "403" });
+            }
         }
 
         [HttpPost]

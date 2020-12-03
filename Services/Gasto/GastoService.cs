@@ -37,5 +37,10 @@ namespace Services
         {
             return repo.GetComprobanteFileName(relativePath, newFileName);
         }
+
+        public bool ValidateCreatorWithCurrentUser(string currentUserEmail, string creatorUserEmail)
+        {
+            return repo.ValidateCreatorWithCurrentUser(currentUserEmail, creatorUserEmail);
+        }
     }
 }

@@ -22,5 +22,10 @@ namespace Services
         {
             return repo.CountUnidadesByConsorcioId(consorcioId);
         }
+
+        public bool ValidateCreatorWithCurrentUser(string currentUserEmail, string creatorUserEmail)
+        {
+            return repo.ValidateCreatorWithCurrentUser(currentUserEmail, creatorUserEmail);
+        }
     }
 }

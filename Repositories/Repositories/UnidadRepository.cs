@@ -29,5 +29,10 @@ namespace Repositories
                 .Count();
             return count;
         }
+
+        public bool ValidateCreatorWithCurrentUser(string currentUserEmail, string creatorUserEmail)
+        {
+            return currentUserEmail.Equals(creatorUserEmail);
+        }
     }
 }

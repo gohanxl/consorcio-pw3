@@ -75,5 +75,10 @@ namespace Repositories
 
             return fileName;
         }
+
+        public bool ValidateCreatorWithCurrentUser(string currentUserEmail, string creatorUserEmail)
+        {
+            return currentUserEmail.Equals(creatorUserEmail);
+        }
     }
 }
