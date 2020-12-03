@@ -28,9 +28,19 @@ namespace ConsorcioPW3.Controllers
         {
             Consorcio consorcio = consorcioService.GetById(id);
             List<Unidad> unidades = unidadService.GetAllByConsorcioId(id);
+            Usuario creatorUser = usuarioService.GetById(consorcio.IdUsuarioCreador);
+            bool isCurrentUserCreator = consorcioService.ValidateCreatorWithCurrentUser(HttpContext.User.Identity.Name, creatorUser.Email);
             SitemapHelper.SetConsorcioBreadcrumbTitle(consorcio.Nombre);
-            ViewBag.ConsorcioId = id;
-            return View(unidades);
+            if (isCurrentUserCreator)
+            {
+
+                ViewBag.ConsorcioId = id;
+                return View(unidades);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Error", new { error = "403" });
+            }
         }
 
         public ActionResult Add(int id)
@@ -77,7 +87,16 @@ namespace ConsorcioPW3.Controllers
         public ActionResult Delete(int id)
         {
             Unidad unidad = unidadService.GetById(id);
-            return View(unidad);
+            Usuario creatorUser = usuarioService.GetById(unidad.IdUsuarioCreador);
+            bool isCurrentUserCreator = consorcioService.ValidateCreatorWithCurrentUser(HttpContext.User.Identity.Name, creatorUser.Email);
+            if (isCurrentUserCreator)
+            {
+                return View(unidad);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Error", new { error = "403" });
+            }
         }
 
         [HttpPost]
@@ -92,9 +111,18 @@ namespace ConsorcioPW3.Controllers
         {
             Unidad unidad = unidadService.GetById(id);
             Consorcio consorcio = consorcioService.GetById(unidad.IdConsorcio);
+            Usuario creatorUser = usuarioService.GetById(unidad.IdUsuarioCreador);
+            bool isCurrentUserCreator = consorcioService.ValidateCreatorWithCurrentUser(HttpContext.User.Identity.Name, creatorUser.Email);
             SitemapHelper.SetConsorcioBreadcrumbTitle(consorcio.Nombre);
-            ViewBag.Consorcio = consorcio;
-            return View(unidad);
+            if (isCurrentUserCreator)
+            {
+                ViewBag.Consorcio = consorcio;
+                return View(unidad);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Error", new { error = "403" });
+            }
         }
 
         [HttpPost]
