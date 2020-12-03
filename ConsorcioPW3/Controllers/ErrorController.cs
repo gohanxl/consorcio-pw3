@@ -16,12 +16,14 @@ namespace ConsorcioPW3.Controllers
                     ViewBag.Title = "Ocurrio un error inesperado";
                     ViewBag.Description = "Por favor, intente de nuevo en otro momento.";
                     break;
-
                 case 404:
                     ViewBag.Title = "Página no encontrada";
                     ViewBag.Description = "La pagina no existe";
                     break;
-
+                case 403:
+                    ViewBag.Title = "Acceso denegado";
+                    ViewBag.Description = "Pagina no disponible";
+                    break;
                 default:
                     ViewBag.Title = "Página no encontrada";
                     ViewBag.Description = "No Messirve";
