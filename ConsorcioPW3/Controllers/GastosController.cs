@@ -41,18 +41,28 @@ namespace ConsorcioPW3.Controllers
         }
 
         public ActionResult Add(int id)
-        {            
+        {
             Consorcio consorcio = consorcioService.GetById(id);
+            Usuario creatorUser = usuarioService.GetById(consorcio.IdUsuarioCreador);
+            bool isCurrentUserCreator = consorcioService.ValidateCreatorWithCurrentUser(HttpContext.User.Identity.Name, creatorUser.Email);
             SitemapHelper.SetConsorcioBreadcrumbTitle(consorcio.Nombre);
-            CargarListasEnViewBag();
-            ViewBag.Consorcio = consorcio;
-            return View();
+            if (isCurrentUserCreator)
+            {
+                CargarListasEnViewBag();
+                ViewBag.Consorcio = consorcio;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Error", new { error = "403" });
+            }
+
         }
 
         [HttpPost]
         [MultipleButton(Name = "action", Argument = "save")]
         public ActionResult Add(Gasto gasto)
-        {            
+        {
             if (ModelState.IsValid)
             {
                 string path = GetAndSaveFile();
@@ -88,11 +98,20 @@ namespace ConsorcioPW3.Controllers
         {
             Gasto gasto = gastoService.GetById(id);
             Consorcio consorcio = gasto.Consorcio;
+            Usuario creatorUser = usuarioService.GetById(consorcio.IdUsuarioCreador);
+            bool isCurrentUserCreator = consorcioService.ValidateCreatorWithCurrentUser(HttpContext.User.Identity.Name, creatorUser.Email);
             SitemapHelper.SetConsorcioBreadcrumbTitle(consorcio.Nombre);
-            CargarListasEnViewBag();
-            ViewBag.Consorcio = consorcio;
+            if (isCurrentUserCreator)
+            {
+                CargarListasEnViewBag();
+                ViewBag.Consorcio = consorcio;
+                return View(gasto);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Error", new { error = "403" });
+            }
 
-            return View(gasto);
         }
 
         [HttpPost]
@@ -101,22 +120,35 @@ namespace ConsorcioPW3.Controllers
             if (ModelState.IsValid)
             {
                 string path = GetAndSaveFile();
-				if (path != "" && gasto.ArchivoComprobante != path) {
-                	gasto.ArchivoComprobante = path;
-            	}                
+                if (path != "" && gasto.ArchivoComprobante != path)
+                {
+                    gasto.ArchivoComprobante = path;
+                }
                 gastoService.Update(gasto);
                 return RedirectToAction("Index", new { id = gasto.IdConsorcio });
             }
             else
             {
                 return View();
-            }        }
+            }
+        }
 
         [HttpGet]
         public ActionResult Delete(int id)
         {
             Gasto gasto = gastoService.GetById(id);
-            return View(gasto);
+            Consorcio consorcio = gasto.Consorcio;
+            Usuario creatorUser = usuarioService.GetById(consorcio.IdUsuarioCreador);
+            bool isCurrentUserCreator = consorcioService.ValidateCreatorWithCurrentUser(HttpContext.User.Identity.Name, creatorUser.Email);
+
+            if (isCurrentUserCreator)
+            {
+                return View(gasto);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Error", new { error = "403" });
+            }
         }
 
         [HttpPost]
@@ -139,20 +171,33 @@ namespace ConsorcioPW3.Controllers
         {
             Gasto gasto = gastoService.GetById(id);
 
-            string absolutePath = gastoService.GetComprobanteAbsolutePath(gasto.ArchivoComprobante);
-            string fileName = gastoService.GetComprobanteFileName(gasto.ArchivoComprobante);
-            byte[] fileBytes;
-            try
+            Consorcio consorcio = gasto.Consorcio;
+            Usuario creatorUser = usuarioService.GetById(consorcio.IdUsuarioCreador);
+            bool isCurrentUserCreator = consorcioService.ValidateCreatorWithCurrentUser(HttpContext.User.Identity.Name, creatorUser.Email);
+
+            if (isCurrentUserCreator)
             {
-                fileBytes = System.IO.File.ReadAllBytes(absolutePath);
-            } 
-            catch (Exception e) {
-                this.AddNotification($"Comprobante no encontrado", NotificationType.ERROR);
-                return RedirectToAction("Index", new { id = gasto.IdConsorcio });
+
+                string absolutePath = gastoService.GetComprobanteAbsolutePath(gasto.ArchivoComprobante);
+                string fileName = gastoService.GetComprobanteFileName(gasto.ArchivoComprobante);
+                byte[] fileBytes;
+
+                try
+                {
+                    fileBytes = System.IO.File.ReadAllBytes(absolutePath);
+                }
+                catch (Exception e)
+                {
+                    this.AddNotification($"Comprobante no encontrado", NotificationType.ERROR);
+                    return RedirectToAction("Index", new { id = gasto.IdConsorcio });
+                }
+                return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
             }
-            
-            
-            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+            else
+            {
+                return RedirectToAction("Index", "Error", new { error = "403" });
+
+            }
         }
 
         private void InsertGasto(Gasto gasto, string pathArchivo)
