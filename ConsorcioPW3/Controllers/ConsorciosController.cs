@@ -1,4 +1,4 @@
-﻿    using ConsorcioPW3.Helpers;
+﻿using ConsorcioPW3.Helpers;
 using MvcSiteMapProvider;
 using MvcSiteMapProvider.Web.Mvc.Filters;
 using Repositories;
@@ -33,7 +33,6 @@ namespace ConsorcioPW3.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-
             Usuario user = GetUser();
             List<Consorcio> consorcios = consorcioService.GetAllByUser(user.IdUsuario);
             return View(consorcios);
@@ -125,10 +124,19 @@ namespace ConsorcioPW3.Controllers
         {
             CargarListasEnViewBag();
             Consorcio consorcio = consorcioService.GetById(id);
-            int unidadesCount = unidadService.CountUnidadesByConsorcioId(id);
-            ViewData["Title"] = consorcio.Nombre;
-            ViewBag.UnidadesCount = unidadesCount;
-            return View(consorcio);
+            Usuario creatorUser = usuarioService.GetById(consorcio.IdUsuarioCreador);
+            bool isCurrentUserCreator = consorcioService.ValidateCreatorWithCurrentUser(HttpContext.User.Identity.Name, creatorUser.Email);
+            if (isCurrentUserCreator)
+            {
+                int unidadesCount = unidadService.CountUnidadesByConsorcioId(id);
+                ViewData["Title"] = consorcio.Nombre;
+                ViewBag.UnidadesCount = unidadesCount;
+                return View(consorcio);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Error", new { error = "403" });
+            }
         }
 
         [HttpPost]
