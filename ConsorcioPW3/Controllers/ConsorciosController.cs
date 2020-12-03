@@ -33,6 +33,7 @@ namespace ConsorcioPW3.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
+
             Usuario user = GetUser();
             List<Consorcio> consorcios = consorcioService.GetAllByUser(user.IdUsuario);
             return View(consorcios);
@@ -93,7 +94,16 @@ namespace ConsorcioPW3.Controllers
         public ActionResult Delete(int id)
         {
             Consorcio consorcio = consorcioService.GetById(id);
-            return View(consorcio);
+            Usuario creatorUser = usuarioService.GetById(consorcio.IdUsuarioCreador);
+            bool isCurrentUserCreator = consorcioService.ValidateCreatorWithCurrentUser(HttpContext.User.Identity.Name, creatorUser.Email);
+            if (isCurrentUserCreator)
+            {
+                return View(consorcio);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Error", new { error = "403" });
+            }
         }
 
         [HttpPost]
