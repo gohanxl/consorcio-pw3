@@ -17,7 +17,7 @@
             Unidades: @ViewBag.CantidadUnidades
         </span>
         <span>
-            Monto por Unidad: @(ViewBag.CantidadUnidades > 0 ? @ViewBag.GastosTotal / @ViewBag.CantidadUnidades : "Sin unidades")
+            Monto por Unidad: @(ViewBag.CantidadUnidades > 0 ? '$' +  Math.Ceiling(@ViewBag.GastosTotal / @ViewBag.CantidadUnidades).ToString() : "Sin unidades")
         </span>
     </div>
     <table id="table" class="table table-striped table-bordered">
@@ -49,10 +49,10 @@
                         @Html.DisplayFor(modelItem => item.MesExpensa)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.GastoTotal)
+                        $@Html.DisplayFor(modelItem => item.GastoTotal)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ExpensasPorUnidad)
+                        $@Html.DisplayFor(modelItem => item.ExpensasPorUnidad)
                     </td>
                 </tr>
             }

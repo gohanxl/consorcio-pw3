@@ -29,12 +29,16 @@ namespace Repositories
                 .Select(g => g.Sum(t => t.Monto))
                 .FirstOrDefault();
 
-            return total;
+            return Math.Ceiling(total);
         }
 
         // Verificar cantidad de unidades
         public List<ExpensaDTO> GetExpensasById(int consorcioId)
         {
+            int countUnidades = ctx.Unidad
+                .Where(u => u.IdConsorcio == consorcioId)
+                .Count();
+
             return ctx.Gasto
                 .Where(g => g.IdConsorcio == consorcioId)
                 .GroupBy(g => new { g.IdConsorcio, g.AnioExpensa, g.MesExpensa })
@@ -42,8 +46,8 @@ namespace Repositories
                 {
                     AnioExpensa = g.Key.AnioExpensa,
                     MesExpensa = g.Key.MesExpensa,
-                    GastoTotal = g.Sum(t => t.Monto),
-                    ExpensasPorUnidad = g.Sum(t => t.Monto) / g.Count()
+                    GastoTotal = Math.Ceiling(g.Sum(t => t.Monto)),
+                    ExpensasPorUnidad = Math.Ceiling(g.Sum(t => t.Monto) / countUnidades)
                 })
                 .OrderByDescending(g => new { g.AnioExpensa, g.MesExpensa })
                 .ToList();
